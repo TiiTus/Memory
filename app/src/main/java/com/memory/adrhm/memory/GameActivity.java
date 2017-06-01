@@ -9,6 +9,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * @author : hansjulien on 29/05/2017.
+ */
+
 public class GameActivity extends AppCompatActivity {
 
     private GridView gridview;
@@ -16,7 +20,7 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
@@ -32,7 +36,7 @@ public class GameActivity extends AppCompatActivity {
         gridview.setAdapter(new CardGameAdapter(this, game));
 
         /**
-         *
+         * @// TODO: 01/06/2017
          * ON RECUPERE LA CATEGORIE ET LE NIVEAU : ON A TOUT POUR CREER LES DIFFERENTES GRILLES SELON LES NIVEAUX
          * METTRE LE NOMBRE DE COLONNES EN AUTO_FIT ET ON SET APRES
          */
@@ -41,5 +45,4 @@ public class GameActivity extends AppCompatActivity {
 
         }
     }
-
 }

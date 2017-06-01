@@ -50,13 +50,21 @@ public class CardGameAdapter extends BaseAdapter {
         if(convertView == null){
             card = new CardGame(context);
             Resources r = Resources.getSystem();
-            // le 210 représente la taille de l'image
-            // voir comment faire pour faire ça dynamiquement
-            float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 210, r.getDisplayMetrics());
+
+            /**
+             * @// TODO: 01/06/2017
+             * check le niveau pour set les caractéristiques de la grille
+             * le 210 représente la taille de l'image
+             * voir comment faire pour faire ça dynamiquement
+             */
+
             //Log.e("MEMORY-TEST-ADAPTER", "level: " + SelectGameActivity.getTitleLevel() + "  categorie: " + CardListViewHolder.getValue());
+
+            float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 220, r.getDisplayMetrics());
             card.setLayoutParams(new GridView.LayoutParams((int) pixels, (int) pixels));
             card.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            card.setPadding(8, 8, 8, 8);
+            //Gauche, Haut, Droite, Bas
+            //card.setPadding(8, 8, 8, 8);
         } else{
             card = (CardGame) convertView;
         }

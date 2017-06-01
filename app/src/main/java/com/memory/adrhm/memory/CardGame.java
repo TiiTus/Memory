@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 /**
- * Created by hansjulien on 29/05/2017.
+ * @author : hansjulien on 29/05/2017.
  */
 
 public class CardGame extends RelativeLayout {
@@ -73,13 +73,4 @@ public class CardGame extends RelativeLayout {
     public ImageView getImage(){
         return image;
     }
-
-    /*@Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(getMeasuredWidth(), getMeasuredHeight());
-        //int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
-          //      MeasureSpec.AT_MOST);
-        //super.onMeasure(widthMeasureSpec, expandSpec);
-    }*/
 }

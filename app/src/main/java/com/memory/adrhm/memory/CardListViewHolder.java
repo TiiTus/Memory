@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by hansjulien on 22/05/2017.
+ * @author : hansjulien on 22/05/2017.
  */
 
 // Classe qui garde les references vers les vues de chaque cards

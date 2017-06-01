@@ -3,7 +3,7 @@ package com.memory.adrhm.memory;
 import android.media.Image;
 
 /**
- * Created by hansjulien on 22/05/2017.
+ * @author : hansjulien on 22/05/2017.
  */
 
 // Classe qui définit ce que contient une card dans le choix des images pour jouer

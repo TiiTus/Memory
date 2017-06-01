@@ -12,6 +12,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : hansjulien on 29/05/2017.
+ */
+
 // Classe qui gere laffichage des choix suivant le niveau selectionne auparavant
 public class SelectGameActivity extends AppCompatActivity {
 

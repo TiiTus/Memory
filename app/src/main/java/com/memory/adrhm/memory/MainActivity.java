@@ -7,6 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * @author : hansjulien on 29/05/2017.
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     private Button easyButton;

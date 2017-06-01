@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by hansjulien on 29/05/2017.
+ * @author : hansjulien on 29/05/2017.
  */
 
 public class Game {
@@ -43,9 +43,12 @@ public class Game {
             R.drawable.santa_claus, R.drawable.boar,
     };
 
-    /*R.drawable.mario, R.drawable.mario,
-      R.drawable.mario, R.drawable.mario,
-      R.drawable.mario, R.drawable.mario
+    /* R.drawable.spain, R.drawable.france,
+            R.drawable.mario, R.drawable.hedgehog,
+            R.drawable.image_11, R.drawable.image_10,
+            R.drawable.mario, R.drawable.mario,
+            R.drawable.mario, R.drawable.mario,
+            R.drawable.mario, R.drawable.mario
     */
 
     //Constructeur pour nouvelle partie, on ne regarde que le nombre d'images
