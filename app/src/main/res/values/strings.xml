@@ -1,0 +1,12 @@
+<resources>
+    <!-- App -->
+    <string name="app_name">Memory</string>
+    <string name="chooseLevel">Choisir le niveau de difficulté</string>
+    <string name="easyButton">Facile</string>
+    <string name="mediumButton">Moyen</string>
+    <string name="hardButton">Difficile</string>
+
+    <!-- Content description -->
+    <string name="descCard">cardImage</string>
+
+</resources>
