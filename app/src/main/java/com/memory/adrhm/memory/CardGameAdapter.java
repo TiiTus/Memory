@@ -15,19 +15,20 @@ import android.widget.ImageView;
  * @author : hansjulien on 29/05/2017.
  */
 
+/**
+ * Classe qui gère l'affichage des images pour le jeu
+ * remplit la grille avec les images
+ */
 public class CardGameAdapter extends BaseAdapter {
-    //Données utilisées pour créer l'adapteur
+
     private Context context;
     private Game game;
 
-    //Le constructeur
     public CardGameAdapter(Context c, Game Game) {
         context = c;
         this.game = Game;
     }
 
-    //Ce sont des fonctions obligatoires quand on créé un adapter. Je ne les utilise pas
-    //par habitude.
     public int getCount() {
         return game.getNbImages()*2;
     }
@@ -62,10 +63,11 @@ public class CardGameAdapter extends BaseAdapter {
 
             float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 220, r.getDisplayMetrics());
             card.setLayoutParams(new GridView.LayoutParams((int) pixels, (int) pixels));
+            // peut être pas utile
             card.setScaleType(ImageView.ScaleType.CENTER_CROP);
             //Gauche, Haut, Droite, Bas
             //card.setPadding(8, 8, 8, 8);
-        } else{
+        } else {
             card = (CardGame) convertView;
         }
         card.setImageResource(game.getImageAt(position));

@@ -16,7 +16,10 @@ import java.util.List;
  * @author : hansjulien on 29/05/2017.
  */
 
-// Classe qui gere laffichage des choix suivant le niveau selectionne auparavant
+/**
+ * Classe qui gere laffichage des choix suivant le niveau selectionne auparavant
+ */
+
 public class SelectGameActivity extends AppCompatActivity {
 
     public static String titleLevel;
@@ -40,11 +43,8 @@ public class SelectGameActivity extends AppCompatActivity {
             initializeEasyList();
 
             recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-            //pour adapter en grille comme une RecyclerView, avec 2 cellules par ligne
+            // adapte la grille comme une RecyclerView, avec 2 cellules par ligne
             recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-
-            //puis créer un CardListAdapter, lui fournir notre liste.
-            //cet adapter servira à remplir notre recyclerview
             recyclerView.setAdapter(new CardListAdapter(easyList));
         }
         else if (getIntent().getStringExtra("level").equals("Moyen")) {
@@ -52,27 +52,20 @@ public class SelectGameActivity extends AppCompatActivity {
             initializeMediumList();
 
             recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-            //pour adapter en grille comme une RecyclerView, avec 2 cellules par ligne
             recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-
-            //puis créer un CardListAdapter, lui fournir notre liste.
-            //cet adapter servira à remplir notre recyclerview
             recyclerView.setAdapter(new CardListAdapter(mediumList));
         }
         else {
             initializeHardList();
 
             recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-            //pour adapter en grille comme une RecyclerView, avec 2 cellules par ligne
             recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-
-            //puis créer un CardListAdapter, lui fournir notre liste.
-            //cet adapter servira à remplir notre recyclerview
             recyclerView.setAdapter(new CardListAdapter(hardList));
         }
     }
 
-    //remplir la ville
+    // Remplissage des listes avec les différentes types d'images à jouer selon les niveaux
+
     public void initializeEasyList() {
         easyList.add(new CardList("Personnages", R.drawable.santa_claus));
         easyList.add(new CardList("Animaux", R.drawable.boar));

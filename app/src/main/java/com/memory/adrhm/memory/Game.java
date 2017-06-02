@@ -9,14 +9,14 @@ import java.util.Random;
  * @author : hansjulien on 29/05/2017.
  */
 
+/**
+ * Classe qui gère la mécanique du jeu
+ * ainsi que les différentes listes d'images selon les niveaux
+ */
+
 public class Game {
 
-    //Le nombre d'images (indique la difficulté) de la partie.
     private int nbImages;
-
-    //Le timer propre au Game. Il n'est updaté que quand on a besoin de sauvegarder la partie ou quand
-    //on charge une partie à partir d'un Game.
-    private int timerMs;
 
     //La liste d'images des cartes du jeu qui sont rangées dans l'ordre ou elles seront affichées.
     private Integer[] images;
@@ -52,78 +52,35 @@ public class Game {
     */
 
     //Constructeur pour nouvelle partie, on ne regarde que le nombre d'images
-    public Game(int nombreImages){
-        /* ** TEST ** */
+    public Game(int nombreImages) {
+
         Log.e("MEMORY-TEST", "level: " + SelectGameActivity.getTitleLevel() + "  categorie: " + CardListViewHolder.getValue());
 
-        //On créé deux tableaux avec nombreImagesx2 cases
         nbImages = nombreImages;
+        // Création de deux tableaux où on double le nombre d'images
         images = new Integer[nbImages*2];
         revelees = new boolean[nbImages*2];
 
-        //On remplit le tableau revelees avec que des false pour l'instant.
-        for(int i=0;i<revelees.length;i++){
+        // Remplissage du tableau revelees avec la valeur false initialement
+        for(int i = 0; i < revelees.length; i++){
             revelees[i] = false;
         }
 
-        //Fill the images with randomly generated images
-        //For that, create an arrayList with twice each image:
-        //On remplit celui des images avec des images générées aléatoirement.
-        //Pour cela, on créé une ArrayList avec deux fois chaque image
+        // Remplissage du tableau images avec des images
+        // Création d'une ArrayList avec deux fois chaque image
         ArrayList<Integer> imageArray = new ArrayList<>();
-        for(int j=0;j<nbImages;j++){
+        for(int j = 0; j < nbImages; j++){
             imageArray.add(availableImages[j]);
             imageArray.add(availableImages[j]);
         }
 
-        //on remplit le tableau images avec les images de l'arrayList, de manière aléatoire.
-        for(int k = 0;k<images.length;k++) {
+        // Remplissage aléatoire du tableau images avec les images de l'arrayList
+        for(int k = 0; k < images.length; k++) {
             Integer randomImage = imageArray.get(new Random().nextInt(imageArray.size()));
             images[k] = randomImage;
             imageArray.remove(randomImage);
         }
 
-    }
-
-    //Constructeur utilisé quand l'utilisateur à changé l'orientation de son écran.
-    //Il est différent du suivant car la Bundle des onSaveInstanceState n'accepte que des array list pour les Integer.
-    public Game(int nombreImages, ArrayList<Integer> imagesSaved, boolean[] reveleesSaved, int time){
-        nbImages = nombreImages;
-        images = new Integer[nbImages*2];
-        revelees = new boolean[nbImages*2];
-        for(int i = 0;i<reveleesSaved.length;i++){
-            images[i] = imagesSaved.get(i);
-        }
-        revelees = reveleesSaved;
-        timerMs = time*1000;
-    }
-
-    //Même que précedement mais pour quand l'utilisateur charge une partie précedente.
-    public Game(int nombreImages, Integer[] imagesSaved, boolean[] reveleesSaved, int time){
-        nbImages = nombreImages;
-        images = imagesSaved;
-        revelees = reveleesSaved;
-        timerMs = time*1000;
-    }
-
-    //Renvoie l'adresse resource de l'image à la position donnée.
-    public Integer getImageAt(int position){
-        return images[position];
-    }
-
-    //Renvoie le nombre d'images
-    public int getNbImages(){
-        return nbImages;
-    }
-
-    //Renvoie la position de la firstClickedCard
-    public int getFirstClickedPosition(){
-        return firstClickedPosition;
-    }
-
-    //Set la position de la firstClickedCard
-    public void setFirstClickedPosition(int position){
-        firstClickedPosition = position;
     }
 
     //Check si la carte à la position donnée est déjà retournée (càd si c'est la firstClickedCard ou si elle
@@ -176,7 +133,6 @@ public class Game {
         return result;
     }
 
-    //Renvoie l'arrayList des adresse resource des images de cette partie
     public ArrayList<Integer> getImages(){
         ArrayList<Integer> result = new ArrayList<Integer>();
         for(int i=0;i<images.length;i++){
@@ -185,13 +141,25 @@ public class Game {
         return result;
     }
 
-    //Renvoie l'état des cartes
-    public boolean[] getRevelees(){
-        return revelees;
+    // Getters & setters
+
+    public Integer getImageAt(int position){
+        return images[position];
     }
 
-    //Renvoie le timer
-    public int getTimer(){
-        return timerMs;
+    public int getNbImages(){
+        return nbImages;
+    }
+
+    public int getFirstClickedPosition(){
+        return firstClickedPosition;
+    }
+
+    public void setFirstClickedPosition(int position){
+        firstClickedPosition = position;
+    }
+
+    public boolean[] getRevelees(){
+        return revelees;
     }
 }

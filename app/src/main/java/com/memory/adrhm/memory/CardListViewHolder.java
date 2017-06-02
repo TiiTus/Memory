@@ -16,7 +16,8 @@ import com.squareup.picasso.Picasso;
  * @author : hansjulien on 22/05/2017.
  */
 
-// Classe qui garde les references vers les vues de chaque cards
+// Classe qui garde les références vers les vues de chaque cards
+
 public class CardListViewHolder extends RecyclerView.ViewHolder{
 
     TextView text;
@@ -44,6 +45,8 @@ public class CardListViewHolder extends RecyclerView.ViewHolder{
         Picasso.with(image.getContext()).load(myObject.getImage()).centerCrop().fit().into(image);
     }*/
 
+
+    // Getters & setters
 
     public static String getValue() {
         return value;

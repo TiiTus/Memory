@@ -11,25 +11,27 @@ import java.util.List;
  * @author : hansjulien on 22/05/2017.
  */
 
-// Classe qui gere la liste de cartes
+/**
+ * Classe qui gere la liste de cartes
+ */
+
 public class CardListAdapter extends RecyclerView.Adapter<CardListViewHolder> {
 
     List<CardList> listCard;
 
-    //ajouter un constructeur prenant en entrée une liste
     public CardListAdapter(List<CardList> list) {
         this.listCard = list;
     }
 
-    //cette fonction permet de créer les viewHolder
-    //et par la même indiquer la vue à inflater (à partir des layout xml)
+    //Création des viewHolder
+    // et inflate la vue xml (grid_categorie_layout)
     @Override
     public CardListViewHolder onCreateViewHolder(ViewGroup viewGroup, int itemType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.grid_categorie_layout,viewGroup,false);
         return new CardListViewHolder(view);
     }
 
-    //remplir notre cellule avec le texte/image de chaque CardList (classe)
+    // Remplissage de la carte avec le texte/image de chaque CardList (classe)
     @Override
     public void onBindViewHolder(CardListViewHolder cardListViewHolder, int position) {
         CardList cardList = listCard.get(position);

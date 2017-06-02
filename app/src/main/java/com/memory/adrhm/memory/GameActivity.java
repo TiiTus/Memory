@@ -13,6 +13,11 @@ import java.util.ArrayList;
  * @author : hansjulien on 29/05/2017.
  */
 
+/**
+ * Classe (Activité) qui gère l'affichage de la grille de jeu
+ * en fonction du niveau sélectionné et du choix des images
+ */
+
 public class GameActivity extends AppCompatActivity {
 
     private GridView gridview;

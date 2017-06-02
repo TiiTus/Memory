@@ -10,14 +10,17 @@ import android.widget.RelativeLayout;
  * @author : hansjulien on 29/05/2017.
  */
 
+/**
+ * Classe qui définit une image dans la grille de jeu
+ * contient deux images, une pour le jeu et un dos quand elle est face cachée
+ */
 public class CardGame extends RelativeLayout {
 
-    //L'inflateur utilisé pour les constructeurs et les éléments graphiques
     private LayoutInflater inflater;
     private ImageView image;
     private ImageView back;
 
-    //Les trois constructeurs nécessaires selon la version de l'OS de l'utilisateur
+    //Les trois constructeurs nécessaires
     public CardGame(Context context) {
         super(context);
         inflater = LayoutInflater.from(context);
@@ -37,30 +40,28 @@ public class CardGame extends RelativeLayout {
         init();
     }
 
-    //Inflate l'inflater et trouve les éléments graphiques pour pouvoir les utiliser
+    // Inflate l'inflater et va chercher les deux images pour pouvoir les utiliser
     private void init(){
         inflater.inflate(R.layout.image_and_back, this, true);
         image = (ImageView)findViewById(R.id.card_image);
         back = (ImageView)findViewById(R.id.card_back_image);
     }
 
-
-    //Utilisée pour mettre l'image souhaitée
+    // Change l'image pour celle souhaitée
     public void setImageResource(Integer resource){
-        if(image!=null) {
+        if(image != null) {
             image.setImageResource(resource);
         }
     }
 
-    //Utilisée pour choisir le type de Scaling de l'image. Les images des chiens que j'ai obtenues du
-    //site dévelopeur Android ne sont pas toutes carrées et doivent être Scalées.
+    // Fonction qui met toutes les images à la même dimension
     public void setScaleType(ImageView.ScaleType scaleType){
-        if(image!=null) {
+        if(image != null) {
             image.setScaleType(scaleType);
         }
     }
 
-    //Fonction pour révéler la carte. On peut aussi mettre une animation ici.
+    // Fonction pour révéler la carte. On peut aussi mettre une animation ici.
     public void reveal(){
         back.setVisibility(GONE);
     }
@@ -70,6 +71,7 @@ public class CardGame extends RelativeLayout {
         back.setVisibility(VISIBLE);
     }
 
+    // Fonction qui renvoie l'image
     public ImageView getImage(){
         return image;
     }
