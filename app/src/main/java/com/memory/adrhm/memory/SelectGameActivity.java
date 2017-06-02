@@ -5,9 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,7 @@ import java.util.List;
  */
 
 /**
- * Classe qui gere laffichage des choix suivant le niveau selectionne auparavant
+ * Classe qui gere l'affichage des choix suivant le niveau selectionné auparavant
  */
 
 public class SelectGameActivity extends AppCompatActivity {

@@ -10,13 +10,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 /**
  * @author : hansjulien on 22/05/2017.
  */
 
-// Classe qui garde les références vers les vues de chaque cards
+/**
+ * Classe qui garde les références vers les vues de chaque cards
+ */
+
 
 public class CardListViewHolder extends RecyclerView.ViewHolder{
 
@@ -32,8 +33,9 @@ public class CardListViewHolder extends RecyclerView.ViewHolder{
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Intent i = new Intent(itemView.getContext(), GameActivity.class);
-                //envoi du titre de la carte
+                // envoi du titre de la carte
                 value = (String) text.getText();
+                // passage du paramètre de la catégorie pour l'activité GameActivity
                 i.putExtra("categorie", value);
                 itemView.getContext().startActivity(i);
             }
