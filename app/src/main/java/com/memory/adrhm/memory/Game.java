@@ -30,18 +30,45 @@ public class Game {
     /**
      * Taille des grilles selon le niveau
      *
-     * Facile : 4x3 = 12 (6 images)
-     * Moyen : 4x4 = 16 (8 images)
-     * Difficile : 5x4 = 20 (10 images)
-     * Difficile2 : 6x4 = 24 (12 images)
+     * - 4x3 (6 images)
+     * - 4x4 (8 images)
+     * - 5x4 (10 images)
+     * - (OPTIONNEL) 6x4 (12 images)
+     * - (OPTIONNEL) 6x6 (18 images)
      */
 
     //Les adresses resources des images disponibles.
-    public static Integer[] availableImages = {
+    private Integer[] hardImages = {
             R.drawable.heisenberg, R.drawable.brazil,
             R.drawable.woman_10, R.drawable.tiger,
             R.drawable.santa_claus, R.drawable.boar,
+            R.drawable.spain, R.drawable.france,
+            R.drawable.mario, R.drawable.hedgehog,
+            R.drawable.image_11, R.drawable.image_10,
+            R.drawable.mario, R.drawable.mario,
+            R.drawable.mario, R.drawable.mario,
+            R.drawable.mario, R.drawable.mario
     };
+
+    private Integer[] easyImages = {
+            R.drawable.heisenberg, R.drawable.brazil,
+            R.drawable.woman_10, R.drawable.tiger,
+            R.drawable.santa_claus, R.drawable.boar
+    };
+
+    private Integer[] flagImages = {
+            R.drawable.spain, R.drawable.brazil,
+            R.drawable.spain, R.drawable.spain,
+            R.drawable.france, R.drawable.brazil,
+            R.drawable.spain, R.drawable.france,
+            R.drawable.brazil, R.drawable.spain,
+            R.drawable.brazil, R.drawable.spain,
+            R.drawable.france, R.drawable.spain,
+            R.drawable.spain, R.drawable.brazil,
+            R.drawable.spain, R.drawable.france
+    };
+
+
 
     /* R.drawable.spain, R.drawable.france,
             R.drawable.mario, R.drawable.hedgehog,
@@ -68,10 +95,33 @@ public class Game {
 
         // Remplissage du tableau images avec des images
         // Création d'une ArrayList avec deux fois chaque image
+
+
+         /*for(int j = 0; j < nbImages; j++){
+            switch (SelectGameActivity.getTitleLevel()) {
+                case "Facile" :
+                    getCategorie(j);
+                    break;
+                case "Moyen" :
+                    getCategorie(j);
+                    break;
+                case "Difficile" :
+                    getCategorie(j);
+                    break;
+            }
+         }*/
+
         ArrayList<Integer> imageArray = new ArrayList<>();
         for(int j = 0; j < nbImages; j++){
-            imageArray.add(availableImages[j]);
-            imageArray.add(availableImages[j]);
+
+            if (SelectGameActivity.getTitleLevel().equals("Facile")) {
+                imageArray.add(easyImages[j]);
+                imageArray.add(easyImages[j]);
+            }
+            else if (SelectGameActivity.getTitleLevel().equals("Difficile")) {
+                imageArray.add(flagImages[j]);
+                imageArray.add(flagImages[j]);
+            }
         }
 
         // Remplissage aléatoire du tableau images avec les images de l'arrayList
@@ -82,6 +132,18 @@ public class Game {
         }
 
     }
+
+    /*private void getCategorie(int num) {
+        ArrayList<Integer> imageArray = new ArrayList<>();
+        switch (CardListViewHolder.getValue()) {
+            case "Personnages" :
+
+            case "Drapeaux" :
+                imageArray.add(flagImages[num]);
+                imageArray.add(flagImages[num]);
+
+        }
+    }*/
 
     //Check si la carte à la position donnée est déjà retournée (càd si c'est la firstClickedCard ou si elle
     //fait partie d'une paire déjà trouvée)

@@ -12,11 +12,12 @@
         android:layout_height="match_parent"
         android:visibility="visible"
         android:id="@+id/card_back_image"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 </RelativeLayout>
 
 
     <!--
     FrameLayout
     <com.memory.adrhm.memory.CardGame
+    android:background="@drawable/image_10
     -->

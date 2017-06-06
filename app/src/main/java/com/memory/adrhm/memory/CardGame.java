@@ -41,38 +41,38 @@ public class CardGame extends RelativeLayout {
     }
 
     // Inflate l'inflater et va chercher les deux images pour pouvoir les utiliser
-    private void init(){
+    private void init() {
         inflater.inflate(R.layout.image_and_back, this, true);
-        image = (ImageView)findViewById(R.id.card_image);
-        back = (ImageView)findViewById(R.id.card_back_image);
+        image = (ImageView) findViewById(R.id.card_image);
+        back = (ImageView) findViewById(R.id.card_back_image);
     }
 
     // Change l'image pour celle souhaitée
-    public void setImageResource(Integer resource){
-        if(image != null) {
+    public void setImageResource(Integer resource) {
+        if (image != null) {
             image.setImageResource(resource);
         }
     }
 
     // Fonction qui met toutes les images à la même dimension
-    public void setScaleType(ImageView.ScaleType scaleType){
-        if(image != null) {
+    public void setScaleType(ImageView.ScaleType scaleType) {
+        if (image != null) {
             image.setScaleType(scaleType);
         }
     }
 
     // Fonction pour révéler la carte. On peut aussi mettre une animation ici.
-    public void reveal(){
+    public void reveal() {
         back.setVisibility(GONE);
     }
 
     //Fonction pour cacher la carte.
-    public void hide(){
+    public void hide() {
         back.setVisibility(VISIBLE);
     }
 
     // Fonction qui renvoie l'image
-    public ImageView getImage(){
+    public ImageView getImage() {
         return image;
     }
 }

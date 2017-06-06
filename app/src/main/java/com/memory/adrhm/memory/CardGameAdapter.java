@@ -3,6 +3,7 @@ package com.memory.adrhm.memory;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,27 +52,42 @@ public class CardGameAdapter extends BaseAdapter {
         if(convertView == null){
             card = new CardGame(context);
             Resources r = Resources.getSystem();
+            float pixels = 0;
 
-            /**
-             * @// TODO: 01/06/2017
-             * check le niveau pour set les caractéristiques de la grille
-             * le 210 représente la taille de l'image
-             * voir comment faire pour faire ça dynamiquement
-             */
+ /* -*-*-*-*-*-*-*-*-*-*-*-*-*-* À TESTER -*-*-*-*-*-*-*-*-*-*-*-*-*-*
+            switch (SelectGameActivity.getTitleLevel()) {
+                case "Facile" :
+                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 220, r.getDisplayMetrics());
+                    break;
+                case "Moyen" :
+                    // REVOIR LA TAILLE
+                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 160, r.getDisplayMetrics());
+                    break;
+                case "Difficile" :
+                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 110, r.getDisplayMetrics());
+                    break;
+            }
+*/
 
-            //Log.e("MEMORY-TEST-ADAPTER", "level: " + SelectGameActivity.getTitleLevel() + "  categorie: " + CardListViewHolder.getValue());
+            if (SelectGameActivity.getTitleLevel().equals("Facile")) {
+                pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 220, r.getDisplayMetrics());
+            }
 
-            float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 220, r.getDisplayMetrics());
+            else if (SelectGameActivity.getTitleLevel().equals("Moyen")) {
+                pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 160 /* -- REVOIR LA TAILLE --*/, r.getDisplayMetrics());
+            }
+
+            else {
+                pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 110, r.getDisplayMetrics());
+            }
+
             card.setLayoutParams(new GridView.LayoutParams((int) pixels, (int) pixels));
-            // peut être pas utile
-            card.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            //Gauche, Haut, Droite, Bas
-            //card.setPadding(8, 8, 8, 8);
+
         } else {
             card = (CardGame) convertView;
         }
-        card.setImageResource(game.getImageAt(position));
 
+        card.setImageResource(game.getImageAt(position));
         return card;
     }
 
@@ -86,9 +102,9 @@ public class CardGameAdapter extends BaseAdapter {
             card = new CardGame(context);
             float pixels;
             if(getWidthDeviceDp(context) >= 360){
-                pixels = convertDpToPixel(75, context);
+                pixels = convertDpToPixel(150, context);
             }else{
-                pixels = convertDpToPixel(62,context);
+                pixels = convertDpToPixel(110,context);
             }
             card.setLayoutParams(new GridView.LayoutParams((int) pixels, (int) pixels));
             card.setScaleType(ImageView.ScaleType.CENTER_CROP);
