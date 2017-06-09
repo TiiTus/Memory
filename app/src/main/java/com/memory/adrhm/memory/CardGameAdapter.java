@@ -14,9 +14,6 @@ import android.widget.ImageView;
 
 /**
  * @author : hansjulien on 29/05/2017.
- */
-
-/**
  * Classe qui gère l'affichage des images pour le jeu
  * remplit la grille avec les images
  */
@@ -54,7 +51,7 @@ public class CardGameAdapter extends BaseAdapter {
             Resources r = Resources.getSystem();
             float pixels = 0;
 
- /* -*-*-*-*-*-*-*-*-*-*-*-*-*-* À TESTER -*-*-*-*-*-*-*-*-*-*-*-*-*-*
+            // On définit la taille des images par rapport au niveau choisi
             switch (SelectGameActivity.getTitleLevel()) {
                 case "Facile" :
                     pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 220, r.getDisplayMetrics());
@@ -67,19 +64,7 @@ public class CardGameAdapter extends BaseAdapter {
                     pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 110, r.getDisplayMetrics());
                     break;
             }
-*/
 
-            if (SelectGameActivity.getTitleLevel().equals("Facile")) {
-                pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 220, r.getDisplayMetrics());
-            }
-
-            else if (SelectGameActivity.getTitleLevel().equals("Moyen")) {
-                pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 160 /* -- REVOIR LA TAILLE --*/, r.getDisplayMetrics());
-            }
-
-            else {
-                pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 110, r.getDisplayMetrics());
-            }
 
             card.setLayoutParams(new GridView.LayoutParams((int) pixels, (int) pixels));
 
@@ -165,36 +150,4 @@ public class CardGameAdapter extends BaseAdapter {
         imageView.setImageResource(game.getImageAt(position));
         return imageView;
     }*/
-
-
-
-    //Convertit les dp en pixel
-    public static float convertDpToPixel(float dp, Context context){
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * (metrics.densityDpi / 160f);
-        return px;
-    }
-
-    //Convertit les pixels en dp
-    public static float convertPixelsToDp(float px, Context context){
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        float dp = px / (metrics.densityDpi / 160f);
-        return dp;
-    }
-
-    //Renvoie la taille de la largeur(la plus petite mesure) de l'appareil
-    public static int getWidthDeviceDp(Context context){
-        Resources resources = context.getResources();
-        DisplayMetrics dm = resources.getDisplayMetrics();
-        return Math.min((int) convertPixelsToDp(dm.widthPixels, context), (int)convertPixelsToDp(dm.heightPixels,context));
-    }
-
-    public static int getHeight(Context c) {
-        DisplayMetrics metrics = new DisplayMetrics();
-        int height = metrics.heightPixels;
-
-        return height;
-    }
 }

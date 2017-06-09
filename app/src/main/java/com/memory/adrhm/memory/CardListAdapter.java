@@ -9,9 +9,6 @@ import java.util.List;
 
 /**
  * @author : hansjulien on 22/05/2017.
- */
-
-/**
  * Classe qui gere la liste de cartes
  */
 

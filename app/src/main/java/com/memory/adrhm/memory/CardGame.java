@@ -8,9 +8,6 @@ import android.widget.RelativeLayout;
 
 /**
  * @author : hansjulien on 29/05/2017.
- */
-
-/**
  * Classe qui définit une image dans la grille de jeu
  * contient deux images, une pour le jeu et un dos quand elle est face cachée
  */

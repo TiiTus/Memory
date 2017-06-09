@@ -5,11 +5,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * @author : hansjulien on 29/05/2017.
- */
 
 /**
+ * @author hansjulien on 29/05/2017
  * Classe qui gère la mécanique du jeu
  * ainsi que les différentes listes d'images selon les niveaux
  */

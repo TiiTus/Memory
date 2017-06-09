@@ -1,20 +1,14 @@
 package com.memory.adrhm.memory;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 
-import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
  * @author : hansjulien on 22/05/2017.
- */
-
-/**
  * Classe qui garde les références vers les vues de chaque cards
  */
 

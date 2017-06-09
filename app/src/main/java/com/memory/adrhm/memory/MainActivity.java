@@ -9,9 +9,6 @@ import android.widget.Button;
 
 /**
  * @author : hansjulien on 29/05/2017.
- */
-
-/**
  * Classe (Activité) qui représente le première page de l'application
  * utilisée pour le choix du niveau de difficulté
  */

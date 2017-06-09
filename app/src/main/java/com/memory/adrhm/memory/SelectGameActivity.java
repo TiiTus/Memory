@@ -11,9 +11,6 @@ import java.util.List;
 
 /**
  * @author : hansjulien on 29/05/2017.
- */
-
-/**
  * Classe qui gere l'affichage des choix suivant le niveau selectionné auparavant
  */
 

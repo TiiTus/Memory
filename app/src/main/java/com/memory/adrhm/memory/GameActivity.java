@@ -10,9 +10,6 @@ import android.widget.GridView;
 
 /**
  * @author : hansjulien on 29/05/2017.
- */
-
-/**
  * Classe (Activité) qui gère l'affichage de la grille de jeu
  * en fonction du niveau sélectionné et du choix des images
  */
