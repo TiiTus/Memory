@@ -9,92 +9,76 @@ import java.util.Random;
 /**
  * @author hansjulien on 29/05/2017
  * Classe qui gère la mécanique du jeu
- * ainsi que les différentes listes d'images selon les niveaux
+ * ainsi que les différentes listes d'pictures selon les niveaux
  */
 
 public class Game {
 
     private int nbImages;
 
-    //La liste d'images des cartes du jeu qui sont rangées dans l'ordre ou elles seront affichées.
-    private Integer[] images;
+    // Les images du jeu
+    private Integer[] pictures;
 
-    //L'état des cartes, si elles ont été trouvées ou non.
-    private boolean[] revelees;
+    // A true si la carte à été trouvée (paire de cartes)
+    private boolean[] returned;
 
-    //Variable qui permet de stocker la carte que l'on choisit en premier avant de la comparer avec une deuxième.
-    private int firstClickedPosition=-1;
+    // Première carte trouvée que l'on va comparer avec la deuxième
+    private int firstCard = -1;
 
     /**
      * Taille des grilles selon le niveau
      *
-     * - 4x3 (6 images)
-     * - 4x4 (8 images)
-     * - 5x4 (10 images)
-     * - (OPTIONNEL) 6x4 (12 images)
-     * - (OPTIONNEL) 6x6 (18 images)
+     * - 4x3 (6 pictures)
+     * - 4x4 (8 pictures)
+     * - 5x4 (10 pictures)
+     * - (OPTIONNEL) 6x5 (15 pictures)
+     * - (OPTIONNEL) 6x6 (18 pictures)
      */
 
-    //Les adresses resources des images disponibles.
-    private Integer[] hardImages = {
+    //Les adresses resources des pictures disponibles.
+    private Integer[] avatarsImages = {
+            R.drawable.avatar, R.drawable.avatar_1,
+            R.drawable.avatar_2, R.drawable.boy,
+            R.drawable.boy_1, R.drawable.boy_2,
+            R.drawable.boy_3, R.drawable.boy_4,
+            R.drawable.boy_5, R.drawable.catwoman,
+            R.drawable.hindu, R.drawable.hindu_1,
+            R.drawable.hood, R.drawable.japanese,
+            R.drawable.santa_claus, R.drawable.woman_10,
+            R.drawable.woman_1, R.drawable.woman_2
+    };
+
+    private Integer[] flagsImages = {
+            R.drawable.spain, R.drawable.brazil,
+            R.drawable.france, R.drawable.brazil,
+            R.drawable.france, R.drawable.spain,
+            R.drawable.brazil, R.drawable.spain
+    };
+
+    private Integer[] mediumImages = {
             R.drawable.heisenberg, R.drawable.brazil,
             R.drawable.woman_10, R.drawable.tiger,
             R.drawable.santa_claus, R.drawable.boar,
             R.drawable.spain, R.drawable.france,
-            R.drawable.mario, R.drawable.hedgehog,
-            R.drawable.image_11, R.drawable.image_10,
-            R.drawable.mario, R.drawable.mario,
-            R.drawable.mario, R.drawable.mario,
-            R.drawable.mario, R.drawable.mario
+            R.drawable.woman_2, R.drawable.hedgehog,
     };
 
-    private Integer[] easyImages = {
-            R.drawable.heisenberg, R.drawable.brazil,
-            R.drawable.woman_10, R.drawable.tiger,
-            R.drawable.santa_claus, R.drawable.boar
-    };
-
-    private Integer[] flagImages = {
-            R.drawable.spain, R.drawable.brazil,
-            R.drawable.spain, R.drawable.spain,
-            R.drawable.france, R.drawable.brazil,
-            R.drawable.spain, R.drawable.france,
-            R.drawable.brazil, R.drawable.spain,
-            R.drawable.brazil, R.drawable.spain,
-            R.drawable.france, R.drawable.spain,
-            R.drawable.spain, R.drawable.brazil,
-            R.drawable.spain, R.drawable.france
-    };
-
-
-
-    /* R.drawable.spain, R.drawable.france,
-            R.drawable.mario, R.drawable.hedgehog,
-            R.drawable.image_11, R.drawable.image_10,
-            R.drawable.mario, R.drawable.mario,
-            R.drawable.mario, R.drawable.mario,
-            R.drawable.mario, R.drawable.mario
-    */
-
-    //Constructeur pour nouvelle partie, on ne regarde que le nombre d'images
+    // Constructeur d'instanciation d'une nouvelle partie
     public Game(int nombreImages) {
 
         Log.e("MEMORY-TEST", "level: " + SelectGameActivity.getTitleLevel() + "  categorie: " + CardListViewHolder.getValue());
 
         nbImages = nombreImages;
-        // Création de deux tableaux où on double le nombre d'images
-        images = new Integer[nbImages*2];
-        revelees = new boolean[nbImages*2];
+        // On double le nombre d'pictures pour avoir des paires
+        pictures = new Integer[nbImages*2];
+        returned = new boolean[nbImages*2];
 
-        // Remplissage du tableau revelees avec la valeur false initialement
-        for(int i = 0; i < revelees.length; i++){
-            revelees[i] = false;
+        // On initialise le tableau returned à false au départ
+        for(int i = 0; i < returned.length; i++){
+            returned[i] = false;
         }
 
-        // Remplissage du tableau images avec des images
-        // Création d'une ArrayList avec deux fois chaque image
-
-
+        /*********** Test de switch ***********/
          /*for(int j = 0; j < nbImages; j++){
             switch (SelectGameActivity.getTitleLevel()) {
                 case "Facile" :
@@ -113,20 +97,27 @@ public class Game {
         for(int j = 0; j < nbImages; j++){
 
             if (SelectGameActivity.getTitleLevel().equals("Facile")) {
-                imageArray.add(easyImages[j]);
-                imageArray.add(easyImages[j]);
+                imageArray.add(avatarsImages[j]);
+                imageArray.add(avatarsImages[j]);
+            }
+            else if (SelectGameActivity.getTitleLevel().equals("Moyen")) {
+                imageArray.add(mediumImages[j]);
+                imageArray.add(mediumImages[j]);
             }
             else if (SelectGameActivity.getTitleLevel().equals("Difficile")) {
-                imageArray.add(flagImages[j]);
-                imageArray.add(flagImages[j]);
+                imageArray.add(avatarsImages[j]);
+                imageArray.add(avatarsImages[j]);
             }
         }
 
-        // Remplissage aléatoire du tableau images avec les images de l'arrayList
-        for(int k = 0; k < images.length; k++) {
+        // Remplissage aléatoire du tableau pictures avec les pictures de l'arrayList
+        for(int k = 0; k < pictures.length; k++) {
             Integer randomImage = imageArray.get(new Random().nextInt(imageArray.size()));
-            images[k] = randomImage;
+            pictures[k] = randomImage;
             imageArray.remove(randomImage);
+
+            // ***************** Tentative *****************
+            //Collections.shuffle(imageArray);
         }
 
     }
@@ -143,60 +134,46 @@ public class Game {
         }
     }*/
 
-    //Check si la carte à la position donnée est déjà retournée (càd si c'est la firstClickedCard ou si elle
-    //fait partie d'une paire déjà trouvée)
-    public boolean isAlreadyRevealed(int position){
-        if(firstClickedPosition!=-1){
-            if(firstClickedPosition == position){
+    // Méthode qui vérifie si la carte (position) est déjà retournée
+    public boolean isAlreadyReturned(int position){
+        if(firstCard !=-1){
+            if(firstCard == position){
                 return true;
             } else{
-                return (revelees[position]);
+                return (returned[position]);
             }
         } else {
-            return (revelees[position]);
+            return (returned[position]);
         }
     }
 
-    //Check si la carte à la position donnée et la firstClickedCard sont une paire.
-    //Renvoie un boolean et met "true" dans le tableau "revelees" pour les deux cartes si
-    //elles sont bonnes.
-    public boolean checkForMatch(int position){
+    // Méthode qui vérifie si la firstCard correspond à l'autre card
+    public boolean check(int position){
         boolean result = false;
-        if(firstClickedPosition != -1){
-            if(images[firstClickedPosition].equals(images[position])){
-                //GOOD!
-                revelees[position] = true;
-                revelees[firstClickedPosition] = true;
+        if(firstCard != -1){
+            if(pictures[firstCard].equals(pictures[position])){
+                // Trouvé
+                returned[position] = true;
+                returned[firstCard] = true;
                 result = true;
 
             }else{
-                //BAD!
-                revelees[firstClickedPosition] = false;
+                // Non trouvé
+                returned[firstCard] = false;
                 result = false;
             }
-            firstClickedPosition=-1;
-        }
-        else{
-            Log.d("Game", "Problème: pas de firstClickedCard");
+            firstCard =-1;
         }
         return result;
     }
 
-    //Check si l'utilisateur a fini la partie
-    public boolean hasFinished(){
+    // Méthode qui vérifie si l'utilisateur à fini la partie
+    public boolean finishedGame(){
         boolean result = true;
-        for(int i = 0;i<revelees.length;i++){
-            if(!revelees[i]){
+        for(int i = 0; i< returned.length; i++){
+            if(!returned[i]){
                 result=false;
             }
-        }
-        return result;
-    }
-
-    public ArrayList<Integer> getImages(){
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        for(int i=0;i<images.length;i++){
-            result.add(images[i]);
         }
         return result;
     }
@@ -204,22 +181,31 @@ public class Game {
     // Getters & setters
 
     public Integer getImageAt(int position){
-        return images[position];
+        return pictures[position];
     }
 
     public int getNbImages(){
         return nbImages;
     }
 
-    public int getFirstClickedPosition(){
-        return firstClickedPosition;
+    public int getFirstCard(){
+        return firstCard;
     }
 
-    public void setFirstClickedPosition(int position){
-        firstClickedPosition = position;
+    public void setFirstCard(int position){
+        firstCard = position;
     }
 
-    public boolean[] getRevelees(){
-        return revelees;
+    public boolean[] getReturned(){
+        return returned;
+    }
+
+
+    public ArrayList<Integer> getPictures(){
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for(int i = 0; i< pictures.length; i++){
+            result.add(pictures[i]);
+        }
+        return result;
     }
 }

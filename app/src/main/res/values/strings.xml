@@ -8,5 +8,13 @@
 
     <!-- Content description -->
     <string name="descCard">cardImage</string>
-
+    <string name="descCardGame">cardGame</string>
+    <string name="descCardBack">cardBackGame</string>
+    
+    <!-- Alert Dialog -->
+    <string name="replayButton">Rejouer</string>
+    <string name="quitButton">Quitter</string>
+    <string name="titleDialog">Vous avez fini en %1$d coups !</string>
+    <string name="messDialog">Voulez-vous rejouer ?</string>
+    
 </resources>

@@ -27,10 +27,9 @@ public class CardListViewHolder extends RecyclerView.ViewHolder{
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Intent i = new Intent(itemView.getContext(), GameActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 // envoi du titre de la carte
                 value = (String) text.getText();
-                // passage du paramètre de la catégorie pour l'activité GameActivity
-                i.putExtra("categorie", value);
                 itemView.getContext().startActivity(i);
             }
         });

@@ -54,18 +54,15 @@ public class CardGameAdapter extends BaseAdapter {
             // On définit la taille des images par rapport au niveau choisi
             switch (SelectGameActivity.getTitleLevel()) {
                 case "Facile" :
-                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 220, r.getDisplayMetrics());
+                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 175, r.getDisplayMetrics());
                     break;
                 case "Moyen" :
-                    // REVOIR LA TAILLE
-                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 160, r.getDisplayMetrics());
+                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170, r.getDisplayMetrics());
                     break;
                 case "Difficile" :
-                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 110, r.getDisplayMetrics());
+                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 140, r.getDisplayMetrics());
                     break;
             }
-
-
             card.setLayoutParams(new GridView.LayoutParams((int) pixels, (int) pixels));
 
         } else {
@@ -87,9 +84,9 @@ public class CardGameAdapter extends BaseAdapter {
             card = new CardGame(context);
             float pixels;
             if(getWidthDeviceDp(context) >= 360){
-                pixels = convertDpToPixel(150, context);
+                pixels = convertDpToPixel(75, context);
             }else{
-                pixels = convertDpToPixel(110,context);
+                pixels = convertDpToPixel(62,context);
             }
             card.setLayoutParams(new GridView.LayoutParams((int) pixels, (int) pixels));
             card.setScaleType(ImageView.ScaleType.CENTER_CROP);

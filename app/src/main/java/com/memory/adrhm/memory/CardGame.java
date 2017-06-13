@@ -58,13 +58,13 @@ public class CardGame extends RelativeLayout {
         }
     }
 
-    // Fonction pour révéler la carte. On peut aussi mettre une animation ici.
-    public void reveal() {
+    // Fonction qui retourne l'image face image
+    public void returnCard() {
         back.setVisibility(GONE);
     }
 
-    //Fonction pour cacher la carte.
-    public void hide() {
+    //Fonction qui retourne l'image face cachée
+    public void hideCard() {
         back.setVisibility(VISIBLE);
     }
 

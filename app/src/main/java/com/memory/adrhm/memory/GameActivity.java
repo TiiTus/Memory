@@ -1,12 +1,15 @@
 package com.memory.adrhm.memory;
 
-import android.content.Intent;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 /**
  * @author : hansjulien on 29/05/2017.
@@ -18,6 +21,8 @@ public class GameActivity extends AppCompatActivity {
 
     private GridView gridview;
     private Game game;
+    private int strokes;
+    private boolean isLocked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,25 +30,13 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        Intent i = getIntent();
-        String cat = getIntent().getStringExtra("categorie");
         gridview = (GridView)findViewById(R.id.gridView);
-        //Log.e("MEMORY","categorie: " + CardListViewHolder.getValue() + "  " + "level: " + SelectGameActivity.getTitleLevel());
-        //Log.e("LENGTH-ARRAY", String.valueOf(Game.hardImages.length));
 
-        //gridview.setMinimumHeight(CardGameAdapter.getHeight(this)/4);
-
-
-        /**
-         * @// TODO: 01/06/2017
-         * ON RECUPERE LA CATEGORIE ET LE NIVEAU : ON A TOUT POUR CREER LES DIFFERENTES GRILLES SELON LES NIVEAUX
-         * METTRE LE NOMBRE DE COLONNES EN AUTO_FIT ET ON SET APRES
-         */
-
-        if (SelectGameActivity.getTitleLevel().equals("Facile") /*&& cat.equals("Personnages")*/) {
+        // Configuration de la grille selon le niveau choisit
+        if (SelectGameActivity.getTitleLevel().equals("Facile")) {
             // 4x4 - 8 images
             gridview.setNumColumns(4);
-            game = new Game(6);
+            game = new Game(8);
         }
 
         if (SelectGameActivity.getTitleLevel().equals("Moyen")) {
@@ -52,10 +45,10 @@ public class GameActivity extends AppCompatActivity {
             game = new Game(10);
         }
 
-        if (SelectGameActivity.getTitleLevel().equals("Difficile") /*&& cat.equals("Personnages")*/) {
-            // 6x6 - 18 images
+        if (SelectGameActivity.getTitleLevel().equals("Difficile")) {
+            // 6x5 - 15 images
             gridview.setNumColumns(6);
-            game = new Game(18);
+            game = new Game(15);
         }
 
         gridview.setVerticalSpacing(20);
@@ -66,8 +59,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final CardGame clickedCard = (CardGame) view;
-
-                clickedCard.reveal();
+                clickedCard.returnCard();
+                /* GAME */
             }
         });
     }
