@@ -3,6 +3,8 @@ package com.memory.adrhm.memory;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 
@@ -78,35 +80,23 @@ public class Game {
             returned[i] = false;
         }
 
-        /*********** Test de switch ***********/
-         /*for(int j = 0; j < nbImages; j++){
-            switch (SelectGameActivity.getTitleLevel()) {
-                case "Facile" :
-                    getCategorie(j);
-                    break;
-                case "Moyen" :
-                    getCategorie(j);
-                    break;
-                case "Difficile" :
-                    getCategorie(j);
-                    break;
-            }
-         }*/
-
-        ArrayList<Integer> imageArray = new ArrayList<>();
+        List<Integer> imageArray = new ArrayList<>();
         for(int j = 0; j < nbImages; j++){
+            //int im = new Random().nextInt(avatarsImages.length);
 
-            if (SelectGameActivity.getTitleLevel().equals("Facile")) {
-                imageArray.add(avatarsImages[j]);
-                imageArray.add(avatarsImages[j]);
-            }
-            else if (SelectGameActivity.getTitleLevel().equals("Moyen")) {
-                imageArray.add(mediumImages[j]);
-                imageArray.add(mediumImages[j]);
-            }
-            else if (SelectGameActivity.getTitleLevel().equals("Difficile")) {
-                imageArray.add(avatarsImages[j]);
-                imageArray.add(avatarsImages[j]);
+            switch (SelectGameActivity.getTitleLevel()) {
+                case "Facile":
+                    imageArray.add(avatarsImages[j]);
+                    imageArray.add(avatarsImages[j]);
+                    break;
+                case "Moyen":
+                    imageArray.add(mediumImages[j]);
+                    imageArray.add(mediumImages[j]);
+                    break;
+                case "Difficile":
+                    imageArray.add(avatarsImages[j]);
+                    imageArray.add(avatarsImages[j]);
+                    break;
             }
         }
 
@@ -136,12 +126,8 @@ public class Game {
 
     // Méthode qui vérifie si la carte (position) est déjà retournée
     public boolean isAlreadyReturned(int position){
-        if(firstCard !=-1){
-            if(firstCard == position){
-                return true;
-            } else{
-                return (returned[position]);
-            }
+        if(firstCard !=-1) {
+            return firstCard == position || (returned[position]);
         } else {
             return (returned[position]);
         }

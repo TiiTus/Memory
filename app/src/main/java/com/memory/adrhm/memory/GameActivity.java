@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -64,4 +65,43 @@ public class GameActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Si fin du jeu on affiche une popup
+     * l'utilisateur peut rejouer une partie ou quitter et revenir à la page précédente
+      */
+    private void endGame(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setPositiveButton(R.string.replayButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+                startActivity(getIntent());
+            }
+        });
+        builder.setNegativeButton(R.string.quitButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+        int nbStrokes = 0/*strokes/2*/;
+        String strStrokes = getResources().getString(R.string.titleDialog, nbStrokes);
+        builder.setTitle(strStrokes)
+                .setMessage(R.string.messDialog);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getWindow().getAttributes();
+
+        TextView message = (TextView) dialog.findViewById(android.R.id.message);
+        if (message != null) {
+            message.setTextSize(20);
+        }
+
+        Button replay = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        replay.setTextSize(18);
+        Button quit = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        quit.setTextSize(18);
+    }
+
 }

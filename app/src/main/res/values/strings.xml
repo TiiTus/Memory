@@ -16,5 +16,7 @@
     <string name="quitButton">Quitter</string>
     <string name="titleDialog">Vous avez fini en %1$d coups !</string>
     <string name="messDialog">Voulez-vous rejouer ?</string>
-    
+
+    <!-- Menu -->
+    <string name="actionCredits">Crédits</string>
 </resources>
