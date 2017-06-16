@@ -3,7 +3,6 @@ package com.memory.adrhm.memory;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -11,7 +10,7 @@ import java.util.Random;
 /**
  * @author hansjulien on 29/05/2017
  * Classe qui gère la mécanique du jeu
- * ainsi que les différentes listes d'pictures selon les niveaux
+ * ainsi que les différentes listes d'images selon les niveaux
  */
 
 public class Game {
@@ -105,11 +104,7 @@ public class Game {
             Integer randomImage = imageArray.get(new Random().nextInt(imageArray.size()));
             pictures[k] = randomImage;
             imageArray.remove(randomImage);
-
-            // ***************** Tentative *****************
-            //Collections.shuffle(imageArray);
         }
-
     }
 
     /*private void getCategorie(int num) {
@@ -170,7 +165,7 @@ public class Game {
         return pictures[position];
     }
 
-    public int getNbImages(){
+    public  int getNbImages(){
         return nbImages;
     }
 

@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/imageCard"
-            android:contentDescription="@string/descCard"
+            android:contentDescription="@string/desc_card"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop" />

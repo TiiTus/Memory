@@ -1,22 +1,33 @@
 <resources>
     <!-- App -->
     <string name="app_name">Memory</string>
-    <string name="chooseLevel">Choisir le niveau de difficulté</string>
-    <string name="easyButton">Facile</string>
-    <string name="mediumButton">Moyen</string>
-    <string name="hardButton">Difficile</string>
+    <string name="credits_activity">Crédits</string>
 
-    <!-- Content description -->
-    <string name="descCard">cardImage</string>
-    <string name="descCardGame">cardGame</string>
-    <string name="descCardBack">cardBackGame</string>
-    
-    <!-- Alert Dialog -->
-    <string name="replayButton">Rejouer</string>
-    <string name="quitButton">Quitter</string>
-    <string name="titleDialog">Vous avez fini en %1$d coups !</string>
-    <string name="messDialog">Voulez-vous rejouer ?</string>
+    <!-- MainActivity -->
+    <string name="choose_level">Choisir le niveau de difficulté</string>
+    <string name="easy_button">Facile</string>
+    <string name="medium_button">Moyen</string>
+    <string name="hard_button">Difficile</string>
 
-    <!-- Menu -->
-    <string name="actionCredits">Crédits</string>
+    <!-- Content description (SelectGameActivity) -->
+    <string name="desc_card">cardImage</string>
+    <string name="desc_card_game">cardGame</string>
+    <string name="desc_card_back">cardBackGame</string>
+
+    <!-- Content description (CreditsActivity) -->
+    <string name="desc_image_perso">imagePerso</string>
+
+    <!-- Alert Dialog Game (GameActivity) -->
+    <string name="replay_button">Rejouer</string>
+    <string name="quit_button">Quitter</string>
+    <string name="title_dialog">Vous avez fini en %1$d coups !</string>
+    <string name="mess_dialog">Voulez-vous rejouer ?</string>
+
+    <!-- Menu (MainActivity) -->
+    <string name="action_credits">Crédits</string>
+
+    <!-- CreditsActivity -->
+    <string name="title_credits">Crédits photos et images</string>
+    <string name="images_credits">Les icônes de la catégorie personnages : designed by Freepik from Flaticon</string>
+
 </resources>

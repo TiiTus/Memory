@@ -6,7 +6,7 @@
 
     <item
         android:id="@+id/action_credit"
-        android:title="@string/actionCredits"
+        android:title="@string/action_credits"
         app:showAsAction="never"/>
 
 </menu>

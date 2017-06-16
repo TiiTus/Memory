@@ -20,10 +20,15 @@
         </activity>
         <activity
             android:name=".SelectGameActivity"
-            android:screenOrientation="userLandscape"/>
+            android:screenOrientation="userLandscape"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".GameActivity"
-            android:screenOrientation="userLandscape"/>
+            android:screenOrientation="userLandscape" />
+        <activity
+            android:name=".CreditsActivity"
+            android:label="@string/credits_activity"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

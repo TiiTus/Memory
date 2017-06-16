@@ -59,6 +59,7 @@ public class SelectGameActivity extends AppCompatActivity {
     }
 
     // Remplissage des listes avec les différentes types d'images à jouer selon les niveaux
+    // Image + titre
 
     public void initializeEasyList() {
         easyList.add(new CardList("Personnages", R.drawable.santa_claus));
@@ -84,5 +85,12 @@ public class SelectGameActivity extends AppCompatActivity {
 
     public static String getTitleLevel() {
         return titleLevel;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        overridePendingTransition(R.anim.nothing, R.anim.slide_out);
+        return true;
     }
 }
