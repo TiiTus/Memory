@@ -17,24 +17,6 @@ public class CardGame extends RelativeLayout {
     private ImageView image;
     private ImageView back;
 
-
-    /*public static final int CARD_FLIP_MSECS = 750;
-
-    private static final int CARD_FLIP_DEGREES = 180;
-    private static final int HALF_CARD_FLIP_DEGREES = CARD_FLIP_DEGREES / 2;
-    private static final int HALF_CARD_FLIP_MSECS = CARD_FLIP_MSECS / 2;
-    private static final int CARD_REMOVE_MSECS = 750;
-
-    // Animators used for flipping a card:
-    ValueAnimator mStartFlip = null;
-    ValueAnimator mFinishFlip = null;
-    ValueAnimator mSwapCardImages = null;
-    private int mCurrentImage;
-
-    // Animator set used for removing a card:
-    AnimatorSet mRemoveCardAnimSet = null;*/
-
-
     //Les trois constructeurs nécessaires selon les différentes versions des utilisateurs
     public CardGame(Context context) {
         super(context);
@@ -60,30 +42,6 @@ public class CardGame extends RelativeLayout {
         inflater.inflate(R.layout.image_and_back, this, true);
         image = (ImageView) findViewById(R.id.card_image);
         back = (ImageView) findViewById(R.id.card_back_image);
-
-/*
-        // Create animator used to start flipping a card. At the end of this, the card has
-        //   been rotated halfway, showing it's edge, making the current card image disappear:
-        mStartFlip = ObjectAnimator.ofFloat(this, "rotationY", 0, HALF_CARD_FLIP_DEGREES);
-        mStartFlip.setDuration(HALF_CARD_FLIP_MSECS);
-        mStartFlip.setInterpolator(new AccelerateInterpolator());
-
-        // Create animator used to finish flipping a card. At the start, the card edge appears
-        //   to be facing the user. Then the new card image is rotated into view until it is fully
-        //   displayed.
-        mFinishFlip = ObjectAnimator.ofFloat(this, "rotationY", -HALF_CARD_FLIP_DEGREES, 0);
-        mFinishFlip.setDuration(HALF_CARD_FLIP_MSECS);
-        mFinishFlip.setInterpolator(new DecelerateInterpolator());
-
-        // Create animators to remove a card by shrinking it to nothing:
-        ValueAnimator removeCardX = ObjectAnimator.ofFloat(this, "scaleX", 1f, 0f);
-        ValueAnimator removeCardY = ObjectAnimator.ofFloat(this, "scaleY", 1f, 0f);
-
-        // Create animator set used to remove a card:
-        mRemoveCardAnimSet = new AnimatorSet();
-        mRemoveCardAnimSet.setDuration(CARD_REMOVE_MSECS);
-        mRemoveCardAnimSet.setInterpolator(new AccelerateDecelerateInterpolator());
-        mRemoveCardAnimSet.play(removeCardX).with(removeCardY);*/
     }
 
     // Change l'image pour celle souhaitée
@@ -114,28 +72,4 @@ public class CardGame extends RelativeLayout {
     public ImageView getImage() {
         return image;
     }
-
-    /*private void flipCard(int image) {
-        // Create a regressive "animator" that merely swaps the front-back card mImages:
-        mSwapCardImages = ObjectAnimator.ofObject(this, "imageResource",
-                new ResourceIdEvaluator(), mCurrentImage, image);
-
-        // Duration 0 seems to work fine to get a single frame, but might need to be a '1':
-        mSwapCardImages.setDuration(0);
-        mCurrentImage = image;
-
-        // Create and mStartFlip an Animator set with the sequence: mStartFlip, mSwapCardImages, mFinishFlip:
-        AnimatorSet flipCardAnim = new AnimatorSet();
-        flipCardAnim.play(mStartFlip).before(mSwapCardImages);
-        flipCardAnim.play(mFinishFlip).after(mSwapCardImages);
-        flipCardAnim.start();
-    }
-
-    public class ResourceIdEvaluator implements TypeEvaluator<Integer> {
-        @Override
-        public Integer evaluate(float fraction, Integer startValue, Integer endValue) {
-            // Always return the end value since we only expect to be run once:
-            return endValue;
-        }
-    }*/
 }

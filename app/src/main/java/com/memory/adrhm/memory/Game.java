@@ -49,6 +49,29 @@ public class Game {
             R.drawable.woman_1, R.drawable.woman_2
     };
 
+    private Integer[] faces = {
+            R.drawable.fille_1, R.drawable.fille_2,
+            R.drawable.fille_3, R.drawable.fille_4,
+            R.drawable.fille_5, R.drawable.fille_6,
+            R.drawable.fille_7, R.drawable.homme_1,
+            R.drawable.homme_2, R.drawable.homme_3,
+            R.drawable.homme_4, R.drawable.homme_5,
+            R.drawable.homme_6, R.drawable.homme_7,
+
+
+    };
+
+    private Integer[] facesBW = {
+            R.drawable.fille_1_bw, R.drawable.fille_2_bw,
+            R.drawable.fille_3_bw, R.drawable.fille_4_bw,
+            R.drawable.fille_5_bw, R.drawable.fille_6_bw,
+            R.drawable.fille_7_bw, R.drawable.homme_1_bw,
+            R.drawable.homme_2_bw, R.drawable.homme_3_bw,
+            R.drawable.homme_4_bw, R.drawable.homme_5_bw,
+            R.drawable.homme_6_bw, R.drawable.homme_7_bw,
+            R.drawable.fille_4_bw
+    };
+
     private Integer[] flagsImages = {
             R.drawable.spain, R.drawable.brazil,
             R.drawable.france, R.drawable.brazil,
@@ -79,22 +102,34 @@ public class Game {
             returned[i] = false;
         }
 
+        String categorie = CardListViewHolder.getValue();
+
         List<Integer> imageArray = new ArrayList<>();
         for(int j = 0; j < nbImages; j++){
             //int im = new Random().nextInt(avatarsImages.length);
 
             switch (SelectGameActivity.getTitleLevel()) {
                 case "Facile":
-                    imageArray.add(avatarsImages[j]);
-                    imageArray.add(avatarsImages[j]);
+                    if (categorie.equals("Animaux")) {
+                        imageArray.add(avatarsImages[j]);
+                        imageArray.add(avatarsImages[j]);
+                    }
+                    else if (categorie.equals("Personnages")) {
+                        imageArray.add(avatarsImages[j]);
+                        imageArray.add(avatarsImages[j]);
+                    }
+                    else if (categorie.equals("Drapeaux")) {
+                        imageArray.add(avatarsImages[j]);
+                        imageArray.add(avatarsImages[j]);
+                    }
                     break;
                 case "Moyen":
                     imageArray.add(mediumImages[j]);
                     imageArray.add(mediumImages[j]);
                     break;
                 case "Difficile":
-                    imageArray.add(avatarsImages[j]);
-                    imageArray.add(avatarsImages[j]);
+                    imageArray.add(facesBW[j]);
+                    imageArray.add(facesBW[j]);
                     break;
             }
         }
@@ -121,7 +156,7 @@ public class Game {
 
     // Méthode qui vérifie si la carte (position) est déjà retournée
     public boolean isAlreadyReturned(int position){
-        if(firstCard !=-1) {
+        if(firstCard != -1) {
             return firstCard == position || (returned[position]);
         } else {
             return (returned[position]);

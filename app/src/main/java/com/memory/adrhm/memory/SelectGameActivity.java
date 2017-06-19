@@ -32,7 +32,7 @@ public class SelectGameActivity extends AppCompatActivity {
         setTitle(getIntent().getStringExtra("level"));
         titleLevel = getIntent().getStringExtra("level");
 
-        if (getIntent().getStringExtra("level").equals("Facile")) {
+        if (titleLevel.equals("Facile")) {
 
             initializeEasyList();
 
@@ -41,7 +41,7 @@ public class SelectGameActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
             recyclerView.setAdapter(new CardListAdapter(easyList));
         }
-        else if (getIntent().getStringExtra("level").equals("Moyen")) {
+        else if (titleLevel.equals("Moyen")) {
 
             initializeMediumList();
 
@@ -81,6 +81,7 @@ public class SelectGameActivity extends AppCompatActivity {
         hardList.add(new CardList("Personnages", R.drawable.santa_claus));
         hardList.add(new CardList("Animaux", R.drawable.boar));
         hardList.add(new CardList("Drapeaux", R.drawable.france));
+        hardList.add(new CardList("Visages noir&blanc", R.drawable.fille_4_bw));
     }
 
     public static String getTitleLevel() {

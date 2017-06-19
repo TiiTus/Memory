@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- theme violet
+    <color name="colorPrimary">#9b26af</color>
+    <color name="colorPrimaryDark">#691a99</color>
+    <color name="colorAccent">#d81b60</color>
+-->
+    <!-- theme rouge/rose
+    <color name="colorPrimary">#e91e63</color>
+    <color name="colorPrimaryDark">#b0003a</color>
+    <color name="colorAccent">#8e24aa</color>
+-->
+    <!-- theme gris/orange -->
+    <color name="colorPrimary">#546e7a</color>
+    <color name="colorPrimaryDark">#29434e</color>
+    <color name="colorAccent">#ff6f00</color>
 
     <color name="blue">#00abea</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 </resources>

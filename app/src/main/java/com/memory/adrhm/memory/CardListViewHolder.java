@@ -28,7 +28,7 @@ public class CardListViewHolder extends RecyclerView.ViewHolder{
             @Override public void onClick(View v) {
                 Intent i = new Intent(itemView.getContext(), GameActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                // envoi du titre de la carte
+                // récupération du titre de la carte
                 value = (String) text.getText();
                 itemView.getContext().startActivity(i);
             }

@@ -17,3 +17,5 @@
         android:background="@drawable/lights_night_dark_abstract"
         android:contentDescription="@string/desc_card_back" />
 </RelativeLayout>
+
+<!--  android:background="@drawable/lights_night_dark_abstract" -->
