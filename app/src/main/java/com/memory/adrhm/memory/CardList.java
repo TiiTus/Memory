@@ -8,11 +8,11 @@ import android.media.Image;
  * Contient une image et un titre
   */
 
-public class CardList {
+class CardList {
     String text;
     int image;
 
-    public CardList(String text, int image) {
+    CardList(String text, int image) {
         this.text = text;
         this.image = image;
     }

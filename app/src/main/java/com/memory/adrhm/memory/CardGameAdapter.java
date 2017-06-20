@@ -18,12 +18,12 @@ import android.widget.ImageView;
  * Classe qui gère l'affichage des images pour le jeu
  * remplit la grille avec les images
  */
-public class CardGameAdapter extends BaseAdapter {
+class CardGameAdapter extends BaseAdapter {
 
     private Context context;
     private Game game;
 
-    public CardGameAdapter(Context c, Game Game) {
+    CardGameAdapter(Context c, Game Game) {
         context = c;
         this.game = Game;
     }
@@ -164,16 +164,14 @@ public class CardGameAdapter extends BaseAdapter {
     public static float convertDpToPixel(float dp, Context context){
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * (metrics.densityDpi / 160f);
-        return px;
+        return dp * (metrics.densityDpi / 160f);
     }
 
     //Convertit les pixels en dp
-    public static float convertPixelsToDp(float px, Context context){
+    private static float convertPixelsToDp(float px, Context context){
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        float dp = px / (metrics.densityDpi / 160f);
-        return dp;
+        return px / (metrics.densityDpi / 160f);
     }
 
     //Renvoie la taille de la largeur(la plus petite mesure) de l'appareil

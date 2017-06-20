@@ -13,14 +13,14 @@ import android.widget.TextView;
  */
 
 
-public class CardListViewHolder extends RecyclerView.ViewHolder{
+class CardListViewHolder extends RecyclerView.ViewHolder{
 
     TextView text;
     ImageView image;
-    public static String value;
+    private static String value;
 
     //itemView est la vue correspondante à 1 cellule
-    public CardListViewHolder(final View itemView) {
+    CardListViewHolder(final View itemView) {
         super(itemView);
         text = (TextView) itemView.findViewById(R.id.textCard);
         image = (ImageView) itemView.findViewById(R.id.imageCard);
@@ -35,19 +35,14 @@ public class CardListViewHolder extends RecyclerView.ViewHolder{
         });
     }
 
-    /*public void bind(CardList myObject){
-        text.setText(myObject.getText());
-        Picasso.with(image.getContext()).load(myObject.getImage()).centerCrop().fit().into(image);
-    }*/
-
 
     // Getters & setters
 
-    public static String getValue() {
+    static String getValue() {
         return value;
     }
 
     public void setValue(String value) {
-        this.value = value;
+        CardListViewHolder.value = value;
     }
 }

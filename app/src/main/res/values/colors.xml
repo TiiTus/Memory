@@ -4,11 +4,41 @@
     <color name="colorPrimary">#9b26af</color>
     <color name="colorPrimaryDark">#691a99</color>
     <color name="colorAccent">#d81b60</color>
--->
-    <!-- theme rouge/rose
+
+    theme rouge/rose
     <color name="colorPrimary">#e91e63</color>
     <color name="colorPrimaryDark">#b0003a</color>
     <color name="colorAccent">#8e24aa</color>
+
+    theme rouge/violet
+    <color name="colorPrimary">#f44336</color>
+    <color name="colorPrimaryDark">#ba000d</color>
+    <color name="colorAccent">#7b1fa2</color>
+
+    theme jaune/vert
+    <color name="colorPrimary">#ffd600</color>
+    <color name="colorPrimaryDark">#c7a500</color>
+    <color name="colorAccent">#689f38 ou #558b2f</color>
+
+    theme emeraude/rouge ou bleu
+    <color name="colorPrimary">#00bfa5</color>
+    <color name="colorPrimaryDark">#008e76</color>
+    <color name="colorAccent">#f44336 ou #303f9f</color>
+
+    theme fuschia/bleu
+    <color name="colorPrimary">#d81b60</color>
+    <color name="colorPrimaryDark">#a00037</color>
+    <color name="colorAccent">#304ffe</color>
+
+    theme orange/gris
+    <color name="colorPrimary">#f57c00</color>
+    <color name="colorPrimaryDark">#bb4d00</color>
+    <color name="colorAccent">#455a64</color>
+
+    theme framboise/jaune
+    <color name="colorPrimary">#c51162</color>
+    <color name="colorPrimaryDark">#8e0038</color>
+    <color name="colorAccent">#ffc400</color>
 -->
     <!-- theme gris/orange -->
     <color name="colorPrimary">#546e7a</color>

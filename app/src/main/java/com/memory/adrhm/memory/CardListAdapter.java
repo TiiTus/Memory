@@ -12,11 +12,11 @@ import java.util.List;
  * Classe qui gere la liste de cartes
  */
 
-public class CardListAdapter extends RecyclerView.Adapter<CardListViewHolder> {
+class CardListAdapter extends RecyclerView.Adapter<CardListViewHolder> {
 
-    List<CardList> listCard;
+    private List<CardList> listCard;
 
-    public CardListAdapter(List<CardList> list) {
+    CardListAdapter(List<CardList> list) {
         this.listCard = list;
     }
 
@@ -31,12 +31,11 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListViewHolder> {
     // Remplissage de la carte avec le texte/image de chaque CardList (classe)
     @Override
     public void onBindViewHolder(CardListViewHolder cardListViewHolder, int position) {
-        CardList cardList = listCard.get(position);
-        //cardListViewHolder.bind(cardList);
         cardListViewHolder.text.setText(listCard.get(position).text);
         cardListViewHolder.image.setImageResource(listCard.get(position).image);
     }
 
+    // Retourne le nombre de cartes (CardList) dans la list
     @Override
     public int getItemCount() {
         return listCard.size();

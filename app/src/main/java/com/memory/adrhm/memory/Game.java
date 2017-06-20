@@ -3,6 +3,7 @@ package com.memory.adrhm.memory;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -29,11 +30,9 @@ public class Game {
     /**
      * Taille des grilles selon le niveau
      *
-     * - 4x3 (6 pictures)
      * - 4x4 (8 pictures)
      * - 5x4 (10 pictures)
-     * - (OPTIONNEL) 6x5 (15 pictures)
-     * - (OPTIONNEL) 6x6 (18 pictures)
+     * - 6x5 (15 pictures)
      */
 
     //Les adresses resources des pictures disponibles.
@@ -93,7 +92,7 @@ public class Game {
         Log.e("MEMORY-TEST", "level: " + SelectGameActivity.getTitleLevel() + "  categorie: " + CardListViewHolder.getValue());
 
         nbImages = nombreImages;
-        // On double le nombre d'pictures pour avoir des paires
+        // On double le nombre d'images pour avoir des paires
         pictures = new Integer[nbImages*2];
         returned = new boolean[nbImages*2];
 
@@ -110,17 +109,19 @@ public class Game {
 
             switch (SelectGameActivity.getTitleLevel()) {
                 case "Facile":
-                    if (categorie.equals("Animaux")) {
-                        imageArray.add(avatarsImages[j]);
-                        imageArray.add(avatarsImages[j]);
-                    }
-                    else if (categorie.equals("Personnages")) {
-                        imageArray.add(avatarsImages[j]);
-                        imageArray.add(avatarsImages[j]);
-                    }
-                    else if (categorie.equals("Drapeaux")) {
-                        imageArray.add(avatarsImages[j]);
-                        imageArray.add(avatarsImages[j]);
+                    switch (categorie) {
+                        case "Animaux":
+                            imageArray.add(avatarsImages[j]);
+                            imageArray.add(avatarsImages[j]);
+                            break;
+                        case "Personnages":
+                            imageArray.add(avatarsImages[j]);
+                            imageArray.add(avatarsImages[j]);
+                            break;
+                        case "Drapeaux":
+                            imageArray.add(avatarsImages[j]);
+                            imageArray.add(avatarsImages[j]);
+                            break;
                     }
                     break;
                 case "Moyen":
@@ -134,7 +135,7 @@ public class Game {
             }
         }
 
-        // Remplissage aléatoire du tableau pictures avec les pictures de l'arrayList
+        // Remplissage aléatoire du tableau pictures avec les images de l'arrayList
         for(int k = 0; k < pictures.length; k++) {
             Integer randomImage = imageArray.get(new Random().nextInt(imageArray.size()));
             pictures[k] = randomImage;
@@ -155,7 +156,7 @@ public class Game {
     }*/
 
     // Méthode qui vérifie si la carte (position) est déjà retournée
-    public boolean isAlreadyReturned(int position){
+    boolean isAlreadyReturned(int position){
         if(firstCard != -1) {
             return firstCard == position || (returned[position]);
         } else {
@@ -163,8 +164,8 @@ public class Game {
         }
     }
 
-    // Méthode qui vérifie si la firstCard correspond à l'autre card
-    public boolean check(int position){
+    // Méthode qui vérifie si la firstCard correspond à la deuxième carte cliquée
+    boolean check(int position){
         boolean result = false;
         if(firstCard != -1){
             if(pictures[firstCard].equals(pictures[position])){
@@ -184,11 +185,11 @@ public class Game {
     }
 
     // Méthode qui vérifie si l'utilisateur à fini la partie
-    public boolean finishedGame(){
+    boolean finishedGame(){
         boolean result = true;
-        for(int i = 0; i< returned.length; i++){
-            if(!returned[i]){
-                result=false;
+        for (boolean aReturned : returned) {
+            if (!aReturned) {
+                result = false;
             }
         }
         return result;
@@ -196,19 +197,19 @@ public class Game {
 
     // Getters & setters
 
-    public Integer getImageAt(int position){
+    Integer getImageAt(int position){
         return pictures[position];
     }
 
-    public  int getNbImages(){
+    int getNbImages(){
         return nbImages;
     }
 
-    public int getFirstCard(){
+    int getFirstCard(){
         return firstCard;
     }
 
-    public void setFirstCard(int position){
+    void setFirstCard(int position){
         firstCard = position;
     }
 
@@ -218,10 +219,8 @@ public class Game {
 
 
     public ArrayList<Integer> getPictures(){
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        for(int i = 0; i< pictures.length; i++){
-            result.add(pictures[i]);
-        }
+        ArrayList<Integer> result = new ArrayList<>();
+        Collections.addAll(result, pictures);
         return result;
     }
 }

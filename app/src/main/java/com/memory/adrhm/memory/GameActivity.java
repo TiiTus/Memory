@@ -2,9 +2,6 @@ package com.memory.adrhm.memory;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -18,7 +15,6 @@ import android.widget.GridView;
 
 public class GameActivity extends AppCompatActivity {
 
-    private GridView gridview;
     private Game game;
     // Nombres de coups joués pour affichage à la fin
     private int strokes;
@@ -31,9 +27,9 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        gridview = (GridView)findViewById(R.id.gridView);
+        final GridView gridview = (GridView) findViewById(R.id.gridView);
 
-        // Configuration de la grille selon le niveau choisit
+        // Configuration de la grille selon le niveau choisi
         switch (SelectGameActivity.getTitleLevel()) {
             case "Facile":
                 // 4x4 - 8 images (facile)
@@ -56,7 +52,6 @@ public class GameActivity extends AppCompatActivity {
 
         gridview.setVerticalSpacing(20);
         gridview.setAdapter(new CardGameAdapter(this, game));
-
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
