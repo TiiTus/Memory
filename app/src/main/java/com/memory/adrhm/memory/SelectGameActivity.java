@@ -65,22 +65,18 @@ public class SelectGameActivity extends AppCompatActivity {
         easyList.add(new CardList("Personnages", R.drawable.santa_claus));
         easyList.add(new CardList("Animaux", R.drawable.boar));
         easyList.add(new CardList("Drapeaux", R.drawable.france));
+        easyList.add(new CardList("Visages", R.drawable.fille_4));
     }
     public void initializeMediumList() {
         mediumList.add(new CardList("Personnages", R.drawable.woman_10));
-        mediumList.add(new CardList("Animaux", R.drawable.hedgehog));
+        mediumList.add(new CardList("Animaux", R.drawable.camel));
         mediumList.add(new CardList("Drapeaux", R.drawable.spain));
     }
     public void initializeHardList() {
         hardList.add(new CardList("Personnages",R.drawable.heisenberg));
-        hardList.add(new CardList("Animaux",R.drawable.tiger));
+        hardList.add(new CardList("Animaux",R.drawable.cat));
         hardList.add(new CardList("Drapeaux",R.drawable.brazil));
-        hardList.add(new CardList("Personnages", R.drawable.woman_10));
-        hardList.add(new CardList("Animaux", R.drawable.hedgehog));
-        hardList.add(new CardList("Drapeaux", R.drawable.spain));
-        hardList.add(new CardList("Personnages", R.drawable.santa_claus));
-        hardList.add(new CardList("Animaux", R.drawable.boar));
-        hardList.add(new CardList("Drapeaux", R.drawable.france));
+        hardList.add(new CardList("Visages", R.drawable.fille_4));
         hardList.add(new CardList("Visages noir&blanc", R.drawable.fille_4_bw));
     }
 
