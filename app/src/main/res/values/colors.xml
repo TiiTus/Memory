@@ -48,4 +48,5 @@
     <color name="blue">#00abea</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="flags_grey">#D8D8D8</color>
 </resources>

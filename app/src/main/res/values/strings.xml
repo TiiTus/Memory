@@ -27,7 +27,11 @@
     <string name="action_credits">Crédits</string>
 
     <!-- CreditsActivity -->
-    <string name="title_credits">Crédits photos et images</string>
-    <string name="images_credits">Les icônes de la catégorie personnages : designed by Freepik from Flaticon</string>
+    <string name="title_credits">\u0020Crédits photos, images et animations</string>
+    <string name="images_credits">
+        \u0020Les icônes de la catégorie personnages : designed by Freepik from Flaticon\n
+        Les icônes de la catégorie animaux : designed by Freepik from Flaticon
+    </string>
+    <string name="konfetti_credits">\u0020Animation confettis : Copyright 2017 Dion Segijn ( https://github.com/DanielMartinus/Konfetti )</string>
 
 </resources>

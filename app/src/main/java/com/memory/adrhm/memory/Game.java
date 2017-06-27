@@ -25,7 +25,7 @@ public class Game {
     // A true si la carte à été trouvée (paire de cartes)
     private boolean[] returned;
 
-    // Première carte trouvée que l'on va comparer avec la deuxième
+    // Première carte retournée que l'on va comparer avec la deuxième
     private int firstCard = -1;
 
     // Catégorie choisie
@@ -144,7 +144,6 @@ public class Game {
 
         List<Integer> imageArray = new ArrayList<>();
         for(int j = 0; j < nbImages; j++){
-
 
             switch (SelectGameActivity.getTitleLevel()) {
                 case "Facile":

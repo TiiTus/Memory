@@ -1,15 +1,20 @@
 package com.memory.adrhm.memory;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
 
 
 /**
@@ -55,20 +60,22 @@ public class GameActivity extends AppCompatActivity {
                 break;
         }
 
+        if (CardListViewHolder.getValue().equals("Drapeaux"))
+            gridview.setBackgroundColor(getResources().getColor(R.color.flags_grey));
+
         gridview.setVerticalSpacing(20);
         gridview.setAdapter(new CardGameAdapter(this, game));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Carte choisie
                 final CardGame clickedCard = (CardGame) view;
                 strokes++;
-                // si le joueur doit attendre
-                Log.e("Avant", "avant");
+                // si le joueur doit attendre car 2 cartes différentes sont déjà retournées
                 if (!isLocked) {
-                    Log.e("Apres", "apres");
                     if (game.isAlreadyReturned(position)) {
-                        Log.e("PositionCliquee", String.valueOf(position));
+                        // On fait rien ou un Toast
                     } else {
                         final int firstCard = game.getFirstCard();
                         if (firstCard == -1) {
@@ -87,7 +94,9 @@ public class GameActivity extends AppCompatActivity {
                                 }
                             } else {
                                 // On laisse les cartes retournées quelques secondes
+                                // et on recache les cartes
                                 isLocked = true;
+
                             }
                         }
                     }
@@ -104,7 +113,22 @@ public class GameActivity extends AppCompatActivity {
      */
     private void endGame(){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Affichage des confettis quand la partie est finie
+        // By Dion Segijn (https://github.com/DanielMartinus/Konfetti)
+        KonfettiView viewKonfetti = (KonfettiView) findViewById(R.id.viewKonfetti);
+        viewKonfetti.build()
+                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA, Color.BLUE, Color.RED, Color.WHITE)
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(5000L)
+                .addShapes(Shape.RECT, Shape.CIRCLE)
+                .addSizes(new Size(12, 6f), new Size(16, 6f))
+                .setPosition(-50f, viewKonfetti.getWidth() +50f, -50f, -50f)
+                .stream(500, 5000L);
+
+        // Construction et affichage de la popup
+        AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
         // Bouton rejouer
         builder.setPositiveButton(R.string.replay_button, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
