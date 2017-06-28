@@ -119,6 +119,8 @@ public class Game {
         // Récupération de la catégorie choisie
         categorie = CardListViewHolder.getValue();
 
+        // Remplissage de la liste shuffle avec le tableau d'images correspondantes à la catégorie choisie,
+        // puis on mélange pour ne pas toujours jouer avec les mêmes images (x premières images du tableau)
         switch (categorie) {
             case "Animaux":
                 shuffle = Arrays.asList(animals);
@@ -142,6 +144,8 @@ public class Game {
                 break;
         }
 
+        // On ajoute 2 fois les images dans la liste imageArray
+        // Selon le niveau de difficulté choisi
         List<Integer> imageArray = new ArrayList<>();
         for(int j = 0; j < nbImages; j++){
 

@@ -39,14 +39,18 @@
     <color name="colorPrimary">#c51162</color>
     <color name="colorPrimaryDark">#8e0038</color>
     <color name="colorAccent">#ffc400</color>
--->
-    <!-- theme gris/orange -->
+
+    theme gris/orange
     <color name="colorPrimary">#546e7a</color>
     <color name="colorPrimaryDark">#29434e</color>
-    <color name="colorAccent">#ff6f00</color>
+    <color name="colorAccent">#e66300</color>
+-->
+    <color name="colorPrimary">#546e7a</color>
+    <color name="colorPrimaryDark">#29434e</color>
+    <color name="colorAccent">#bf4080</color>
 
     <color name="blue">#00abea</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="flags_grey">#D8D8D8</color>
+    <color name="grey_background_flags">#D8D8D8</color>
 </resources>

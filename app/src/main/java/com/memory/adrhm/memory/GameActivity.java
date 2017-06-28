@@ -3,6 +3,7 @@ package com.memory.adrhm.memory;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,8 +61,10 @@ public class GameActivity extends AppCompatActivity {
                 break;
         }
 
+        // On regarde si la catégorie est "Drapeaux" et on fonce la couleur de fond
+        // à cause de la couleur blanche sur certains drapeaux
         if (CardListViewHolder.getValue().equals("Drapeaux"))
-            gridview.setBackgroundColor(getResources().getColor(R.color.flags_grey));
+            gridview.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_background_flags));
 
         gridview.setVerticalSpacing(20);
         gridview.setAdapter(new CardGameAdapter(this, game));
@@ -96,7 +99,16 @@ public class GameActivity extends AppCompatActivity {
                                 // On laisse les cartes retournées quelques secondes
                                 // et on recache les cartes
                                 isLocked = true;
-
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        clickedCard.hideCard();
+                                        CardGame secondCard = (CardGame) (gridview.getChildAt(firstCard));
+                                        secondCard.hideCard();
+                                        isLocked = false;
+                                    }
+                                },1000);
                             }
                         }
                     }
@@ -117,13 +129,13 @@ public class GameActivity extends AppCompatActivity {
         // By Dion Segijn (https://github.com/DanielMartinus/Konfetti)
         KonfettiView viewKonfetti = (KonfettiView) findViewById(R.id.viewKonfetti);
         viewKonfetti.build()
-                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA, Color.BLUE, Color.RED, Color.WHITE)
+                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA, Color.BLUE, Color.RED)
                 .setDirection(0.0, 359.0)
                 .setSpeed(1f, 5f)
                 .setFadeOutEnabled(true)
                 .setTimeToLive(5000L)
                 .addShapes(Shape.RECT, Shape.CIRCLE)
-                .addSizes(new Size(12, 6f), new Size(16, 6f))
+                .addSizes(new Size(20, 6f), new Size(16, 6f))
                 .setPosition(-50f, viewKonfetti.getWidth() +50f, -50f, -50f)
                 .stream(500, 5000L);
 

@@ -24,7 +24,7 @@
         android:textAllCaps="true"
         android:typeface="normal"
         android:textAlignment="center"
-        android:textColor="@android:color/black" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/easyButton"
@@ -42,7 +42,7 @@
         android:text="@string/easy_button"
         android:textSize="30sp"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:background="@color/colorAccent" />
 
     <Button
@@ -64,7 +64,7 @@
         android:text="@string/medium_button"
         android:textSize="30sp"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:background="@color/colorAccent" />
 
     <Button
@@ -83,7 +83,7 @@
         android:text="@string/hard_button"
         android:textSize="30sp"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:background="@color/colorAccent" />
 
     <android.support.constraint.Guideline
