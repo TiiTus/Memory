@@ -69,11 +69,11 @@ public class Game {
             R.drawable.fille_1, R.drawable.fille_2,
             R.drawable.fille_3, R.drawable.fille_4,
             R.drawable.fille_5, R.drawable.fille_6,
-            R.drawable.fille_7, R.drawable.homme_1,
-            R.drawable.homme_2, R.drawable.homme_3,
-            R.drawable.homme_4, R.drawable.homme_5,
-            R.drawable.homme_6, R.drawable.homme_7,
-            R.drawable.fille_4
+            R.drawable.fille_7, R.drawable.fille_8,
+            R.drawable.homme_1, R.drawable.homme_2,
+            R.drawable.homme_3, R.drawable.homme_4,
+            R.drawable.homme_5, R.drawable.homme_6,
+            R.drawable.homme_7
 
 
     };
@@ -82,11 +82,11 @@ public class Game {
             R.drawable.fille_1_bw, R.drawable.fille_2_bw,
             R.drawable.fille_3_bw, R.drawable.fille_4_bw,
             R.drawable.fille_5_bw, R.drawable.fille_6_bw,
-            R.drawable.fille_7_bw, R.drawable.homme_1_bw,
-            R.drawable.homme_2_bw, R.drawable.homme_3_bw,
-            R.drawable.homme_4_bw, R.drawable.homme_5_bw,
-            R.drawable.homme_6_bw, R.drawable.homme_7_bw,
-            R.drawable.fille_4_bw
+            R.drawable.fille_7_bw, R.drawable.fille_8_bw,
+            R.drawable.homme_1_bw, R.drawable.homme_2_bw,
+            R.drawable.homme_3_bw, R.drawable.homme_4_bw,
+            R.drawable.homme_5_bw, R.drawable.homme_6_bw,
+            R.drawable.homme_7_bw
     };
 
     private Integer[] flagsImages = {

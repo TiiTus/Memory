@@ -2,6 +2,7 @@ package com.memory.adrhm.memory;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -78,7 +79,7 @@ public class GameActivity extends AppCompatActivity {
                 // si le joueur doit attendre car 2 cartes différentes sont déjà retournées
                 if (!isLocked) {
                     if (game.isAlreadyReturned(position)) {
-                        // On fait rien ou un Toast
+                        // On ne fait rien ou un Toast
                     } else {
                         final int firstCard = game.getFirstCard();
                         if (firstCard == -1) {
@@ -108,7 +109,7 @@ public class GameActivity extends AppCompatActivity {
                                         secondCard.hideCard();
                                         isLocked = false;
                                     }
-                                },1000);
+                                },2000);
                             }
                         }
                     }
@@ -124,6 +125,9 @@ public class GameActivity extends AppCompatActivity {
      * - ou de quitter et revenir à la page précédente
      */
     private void endGame(){
+
+        //MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.);
+        //mp.start();
 
         // Affichage des confettis quand la partie est finie
         // By Dion Segijn (https://github.com/DanielMartinus/Konfetti)
