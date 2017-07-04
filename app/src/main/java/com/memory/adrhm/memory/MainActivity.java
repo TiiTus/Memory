@@ -9,8 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.fujiyuu75.sequent.Animation;
-import com.fujiyuu75.sequent.Sequent;
 
 /**
  * @author : hansjulien on 29/05/2017.
@@ -32,10 +30,6 @@ public class MainActivity extends AppCompatActivity {
         mediumButton = (Button)findViewById(R.id.mediumButton);
         hardButton = (Button)findViewById(R.id.hardButton);
         ConstraintLayout cl = (ConstraintLayout) findViewById(R.id.constraintLayoutMain);
-
-        // Animation apparition widgets
-        // By Yuichi Fujikawa (https://github.com/fujiyuu75/Sequent)
-        Sequent.origin(cl).duration(900).anim(this, Animation.FADE_IN_LEFT).start();
 
 
         easyButton.setOnClickListener(new View.OnClickListener() {

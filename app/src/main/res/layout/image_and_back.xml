@@ -14,8 +14,6 @@
         android:visibility="visible"
         android:id="@+id/card_back_image"
         android:scaleType="centerCrop"
-        android:background="@drawable/lights_night_dark_abstract"
+        android:background="@drawable/card_back"
         android:contentDescription="@string/desc_card_back" />
 </RelativeLayout>
-
-<!--  android:background="@drawable/lights_night_dark_abstract" -->

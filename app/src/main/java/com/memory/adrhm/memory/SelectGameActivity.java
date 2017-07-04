@@ -18,8 +18,6 @@ public class SelectGameActivity extends AppCompatActivity {
 
     public static String titleLevel;
 
-    private RecyclerView recyclerView;
-
     private List<CardList> easyList = new ArrayList<>();
     private List<CardList> mediumList = new ArrayList<>();
     private List<CardList> hardList = new ArrayList<>();
@@ -32,29 +30,29 @@ public class SelectGameActivity extends AppCompatActivity {
         setTitle(getIntent().getStringExtra("level"));
         titleLevel = getIntent().getStringExtra("level");
 
-        if (titleLevel.equals("Facile")) {
+        RecyclerView recyclerView;
+        switch (titleLevel) {
+            case "Facile":
+                initializeEasyList();
+                recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                // adapte la grille comme une RecyclerView, avec 2 cellules par ligne
+                recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+                recyclerView.setAdapter(new CardListAdapter(easyList));
+                break;
 
-            initializeEasyList();
+            case "Moyen":
+                initializeMediumList();
+                recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+                recyclerView.setAdapter(new CardListAdapter(mediumList));
+                break;
 
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-            // adapte la grille comme une RecyclerView, avec 2 cellules par ligne
-            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-            recyclerView.setAdapter(new CardListAdapter(easyList));
-        }
-        else if (titleLevel.equals("Moyen")) {
-
-            initializeMediumList();
-
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-            recyclerView.setAdapter(new CardListAdapter(mediumList));
-        }
-        else {
-            initializeHardList();
-
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-            recyclerView.setAdapter(new CardListAdapter(hardList));
+            default:
+                initializeHardList();
+                recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+                recyclerView.setAdapter(new CardListAdapter(hardList));
+                break;
         }
     }
 
@@ -65,19 +63,23 @@ public class SelectGameActivity extends AppCompatActivity {
         easyList.add(new CardList("Personnages", R.drawable.santa_claus));
         easyList.add(new CardList("Animaux", R.drawable.boar));
         easyList.add(new CardList("Drapeaux", R.drawable.france));
-        easyList.add(new CardList("Visages", R.drawable.fille_4));
+        //easyList.add(new CardList("Visages", R.drawable.fille_4));
+        easyList.add(new CardList("Emoticones", R.drawable.smiling));
     }
     public void initializeMediumList() {
         mediumList.add(new CardList("Personnages", R.drawable.woman_10));
-        mediumList.add(new CardList("Animaux", R.drawable.camel));
+        mediumList.add(new CardList("Animaux", R.drawable.pig));
         mediumList.add(new CardList("Drapeaux", R.drawable.spain));
+        mediumList.add(new CardList("Emoticones", R.drawable.happy_2));
     }
+
     public void initializeHardList() {
         hardList.add(new CardList("Personnages",R.drawable.heisenberg));
         hardList.add(new CardList("Animaux",R.drawable.cat));
         hardList.add(new CardList("Drapeaux",R.drawable.brazil));
-        hardList.add(new CardList("Visages", R.drawable.fille_4));
-        hardList.add(new CardList("Visages noir&blanc", R.drawable.fille_4_bw));
+        //hardList.add(new CardList("Visages", R.drawable.fille_4));
+        //hardList.add(new CardList("Visages noir&blanc", R.drawable.fille_4_bw));
+        hardList.add(new CardList("Emoticones", R.drawable.tongue_out));
     }
 
     public static String getTitleLevel() {

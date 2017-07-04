@@ -68,6 +68,10 @@ public class CardGame extends RelativeLayout {
         back.setVisibility(VISIBLE);
     }
 
+    public void removeCard() {
+        image.setVisibility(GONE);
+    }
+
     // Fonction qui renvoie l'image
     public ImageView getImage() {
         return image;

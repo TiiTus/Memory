@@ -2,7 +2,9 @@ package com.memory.adrhm.memory;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.media.MediaPlayer;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import nl.dionsegijn.konfetti.KonfettiView;
@@ -28,18 +31,42 @@ import nl.dionsegijn.konfetti.models.Size;
 public class GameActivity extends AppCompatActivity {
 
     private Game game;
+    private SoundPool sp;
     // Nombres de coups joués pour affichage à la fin
     private int strokes;
     // Variable qui indique si on doit attendre avant de retourner les 2 cartes
     private boolean isLocked = false;
+    // Le son joué
+    private int soundId;
+    // Variable qui indique si le son est chargé
+    private boolean loaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         final GridView gridview = (GridView) findViewById(R.id.gridView);
+        final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.rlGameActivity);
+
+        // Construction des outis pour lire les sons
+        AudioAttributes attrs = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .build();
+        sp = new SoundPool.Builder()
+                .setMaxStreams(1)
+                .setAudioAttributes(attrs)
+                .build();
+        sp.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                loaded = true;
+            }
+        });
+        soundId = sp.load(getApplicationContext(), R.raw.applause_2, 1);
 
         // Configuration de la grille selon le niveau choisi
         switch (SelectGameActivity.getTitleLevel()) {
@@ -64,9 +91,9 @@ public class GameActivity extends AppCompatActivity {
 
         // On regarde si la catégorie est "Drapeaux" et on fonce la couleur de fond
         // à cause de la couleur blanche sur certains drapeaux
-        if (CardListViewHolder.getValue().equals("Drapeaux"))
-            gridview.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_background_flags));
-
+        if (CardListViewHolder.getValue().equals("Drapeaux")) {
+            relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_background_flags));
+        }
         gridview.setVerticalSpacing(20);
         gridview.setAdapter(new CardGameAdapter(this, game));
 
@@ -92,8 +119,22 @@ public class GameActivity extends AppCompatActivity {
                             boolean match = game.check(position);
 
                             if (match) {
+                                /* LAISSER LES 2 CARTES RETOURNÉE 2S AVANT DE LES SUPPRIMER
+                                isLocked = true;
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        clickedCard.removeCard();
+                                        CardGame secondCard = (CardGame) (gridview.getChildAt(firstCard));
+                                        secondCard.removeCard();
+                                        isLocked = false;
+                                    }
+                                },2000);*/
                                 // Si identique on regarde si fin du jeu
                                 if (game.finishedGame()) {
+                                    if (loaded)
+                                        sp.play(soundId, 1, 1, 1, 0, 1f);
                                     endGame();
                                 }
                             } else {
@@ -126,9 +167,6 @@ public class GameActivity extends AppCompatActivity {
      */
     private void endGame(){
 
-        //MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.);
-        //mp.start();
-
         // Affichage des confettis quand la partie est finie
         // By Dion Segijn (https://github.com/DanielMartinus/Konfetti)
         KonfettiView viewKonfetti = (KonfettiView) findViewById(R.id.viewKonfetti);
@@ -148,6 +186,8 @@ public class GameActivity extends AppCompatActivity {
         // Bouton rejouer
         builder.setPositiveButton(R.string.replay_button, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                //player.stop();
+                //player.release();
                 finish();
                 startActivity(getIntent());
             }
@@ -179,5 +219,17 @@ public class GameActivity extends AppCompatActivity {
         replay.setTextSize(18);
         Button quit = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
         quit.setTextSize(18);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        sp.release();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sp.release();
     }
 }
