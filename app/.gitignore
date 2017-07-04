@@ -1,2 +1,4 @@
 /build
 /src/main/res/drawable/*.png
+/src/main/res/drawable/*.jpg
+/src/main/res/raw/*.mp3
