@@ -31,6 +31,7 @@ import nl.dionsegijn.konfetti.models.Size;
 public class GameActivity extends AppCompatActivity {
 
     private Game game;
+    // Instance de la classe SoundPool qui gère et joue les ressources audio
     private SoundPool sp;
     // Nombres de coups joués pour affichage à la fin
     private int strokes;
@@ -51,7 +52,7 @@ public class GameActivity extends AppCompatActivity {
         final GridView gridview = (GridView) findViewById(R.id.gridView);
         final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.rlGameActivity);
 
-        // Construction des outis pour lire les sons
+        // Construction des outils pour lire les sons
         AudioAttributes attrs = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_MEDIA)
                 .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -186,8 +187,6 @@ public class GameActivity extends AppCompatActivity {
         // Bouton rejouer
         builder.setPositiveButton(R.string.replay_button, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                //player.stop();
-                //player.release();
                 finish();
                 startActivity(getIntent());
             }
@@ -206,7 +205,7 @@ public class GameActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-        dialog.getWindow().getAttributes();
+        //dialog.getWindow().getAttributes();
 
         // Récupération du message dans un Textview pour changer la taille du texte
         TextView message = (TextView) dialog.findViewById(android.R.id.message);
@@ -231,5 +230,36 @@ public class GameActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         sp.release();
+    }
+
+    // Méthode qui demande si l'utilisateur veut vraiment quitter la partie
+    // quand celui-ci appuie sur la touche "précédent"
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.title_dialog_back_pressed)
+                .setMessage(R.string.mess_dialog_back_pressed)
+                .setNegativeButton(R.string.no_button, null)
+                .setPositiveButton(R.string.yes_button, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        GameActivity.super.onBackPressed();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        //dialog.getWindow().getAttributes();
+
+        // Récupération du message dans un Textview pour changer la taille du texte
+        TextView message = (TextView) dialog.findViewById(android.R.id.message);
+        if (message != null) {
+            message.setTextSize(20);
+        }
+
+        // Récupération des 2 boutons pour changer la taille du texte
+        Button yes = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        yes.setTextSize(18);
+        Button no = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        no.setTextSize(18);
     }
 }

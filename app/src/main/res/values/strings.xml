@@ -23,8 +23,21 @@
     <string name="title_dialog">Vous avez fini en %1$d coups !</string>
     <string name="mess_dialog">Voulez-vous rejouer ?</string>
 
+    <!-- Alert Dialog onBackPressed (GameActivity) -->
+    <string name="title_dialog_back_pressed">Quitter la partie</string>
+    <string name="mess_dialog_back_pressed">Êtes-vous sûr de vouloir quitter la partie ?</string>
+    <string name="yes_button">Oui</string>
+    <string name="no_button">Non</string>
+
+    <!-- Dialog Parameter (MainActivity) -->
+    <string name="title_dialog_parameter">Paramètres</string>
+    <string name="mess_toggle_button">\u0009Suppression des cartes trouvées</string>
+    <string name="button_ok">Enregistrer</string>
+    <string name="button_cancel">Annuler</string>
+
     <!-- Menu (MainActivity) -->
     <string name="action_credits">Crédits</string>
+    <string name="action_settings">Paramètres</string>
 
     <!-- CreditsActivity -->
     <string name="title_credits">\u0020Crédits photos, images et animations</string>

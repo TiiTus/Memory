@@ -9,13 +9,15 @@ import android.widget.TextView;
 
 /**
  * @author : hansjulien on 22/05/2017.
- * Classe qui garde les références vers les vues de chaque cards
+ * Classe qui garde les références vers les vues de chaque carte
  */
 
 
 class CardListViewHolder extends RecyclerView.ViewHolder{
 
+    // Titre de la carte
     TextView text;
+    // Image de la carte
     ImageView image;
     private static String value;
 

@@ -4,12 +4,14 @@ import android.media.Image;
 
 /**
  * @author : hansjulien on 22/05/2017.
- * Classe qui définit ce que contient une card dans le choix des images pour jouer
- * Contient une image et un titre
+ * Classe qui définit ce que contient une carte dans le choix des images pour jouer
+ * Une carte contient une image et un titre
   */
 
 class CardList {
+    // Titre de la carte
     String text;
+    // Image de la carte
     int image;
 
     CardList(String text, int image) {

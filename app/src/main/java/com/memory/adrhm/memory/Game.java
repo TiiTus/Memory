@@ -17,31 +17,26 @@ import java.util.Random;
 
 public class Game {
 
+    // Nombre d'images (sans paires)
     private int nbImages;
-
     // Les images du jeu
     private Integer[] pictures;
-
     // A true si la carte à été trouvée (paire de cartes)
     private boolean[] returned;
-
     // Première carte retournée que l'on va comparer avec la deuxième
     private int firstCard = -1;
-
-    // Catégorie choisie
-    private String categorie;
-
+    // Liste qui contient les images de la catégorie choisie et mélangées
     private List<Integer> shuffle;
 
     /**
      * Taille des grilles selon le niveau
      *
-     * - 4x4 (8 pictures)
-     * - 5x4 (10 pictures)
-     * - 6x5 (15 pictures)
+     * - 4x4 (8 images)
+     * - 5x4 (10 images)
+     * - 6x5 (15 images)
      */
 
-    //Les adresses resources des images disponibles.
+    //Les adresses resources des images disponibles
     private Integer[] avatarsImages = {
             R.drawable.avatar_1, R.drawable.avatar_2,
             R.drawable.boy_1, R.drawable.boy_2,
@@ -138,7 +133,7 @@ public class Game {
         }
 
         // Récupération de la catégorie choisie
-        categorie = CardListViewHolder.getValue();
+        String categorie = CardListViewHolder.getValue();
 
         // Remplissage de la liste shuffle avec le tableau d'images correspondantes à la catégorie choisie,
         // puis on mélange pour ne pas toujours jouer avec les mêmes images (x premières images du tableau)

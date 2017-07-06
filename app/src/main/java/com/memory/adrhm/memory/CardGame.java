@@ -14,7 +14,9 @@ import android.widget.RelativeLayout;
 public class CardGame extends RelativeLayout {
 
     private LayoutInflater inflater;
+    // Image du jeu
     private ImageView image;
+    // Dos de l'image
     private ImageView back;
 
     //Les trois constructeurs nécessaires selon les différentes versions des utilisateurs

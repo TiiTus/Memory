@@ -8,5 +8,10 @@
         android:id="@+id/action_credit"
         android:title="@string/action_credits"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="never"
+        />
 
 </menu>

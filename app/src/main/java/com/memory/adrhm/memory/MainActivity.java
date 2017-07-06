@@ -1,13 +1,19 @@
 package com.memory.adrhm.memory;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 
 /**
@@ -20,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button easyButton;
     private Button mediumButton;
     private Button hardButton;
+    ToggleButton toggleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +85,50 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, CreditsActivity.class);
                 startActivity(i);
                 return true;
+
+            case R.id.action_settings:
+
+                // Construction d'une popup qui va permettre à l'utilisateur de choisir
+                // la suppression ou non des cartes quand celles-ci sont trouvées
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                View v = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_parameter_dialog, null);
+                builder.setView(v);
+                builder.setTitle(R.string.title_dialog_parameter);
+                toggleButton = (ToggleButton) v.findViewById(R.id.togglebutton);
+
+                toggleButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (toggleButton.isChecked()) {
+                            Toast.makeText(MainActivity.this, "La suppression des cartes est activée", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "La suppression des cartes est désactivée", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                // bouton enregistrer le choix
+                builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (toggleButton.isChecked()) {
+                            Log.e("CHECK", String.valueOf(toggleButton.getText()));
+                            // SharedPreferences
+                        }
+                        else
+                            Log.e("UNCHECKED", String.valueOf(toggleButton.getText()));
+                    }
+                });
+                //bouton annuler
+                builder.setNegativeButton(R.string.button_cancel, null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+                // Récupération des 2 boutons pour changer la taille du texte
+                Button ok = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                ok.setTextSize(18);
+                Button cancel = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+                cancel.setTextSize(18);
+
             default:
                 return super.onOptionsItemSelected(item);
         }
