@@ -1,15 +1,18 @@
 package com.memory.adrhm.memory;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -42,6 +45,8 @@ public class GameActivity extends AppCompatActivity {
     // Variable qui indique si le son est chargé
     private boolean loaded = false;
 
+    GridView gridview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -49,8 +54,12 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-        final GridView gridview = (GridView) findViewById(R.id.gridView);
+        gridview = (GridView) findViewById(R.id.gridView);
         final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.rlGameActivity);
+
+        SharedPreferences settings = getSharedPreferences("myPref", 0);
+        final String gamePrefRead = settings.getString("supp_or_not_card_param", "Désactivé");
+        Log.e("SHAREDPREFERENCES", gamePrefRead);
 
         // Construction des outils pour lire les sons
         AudioAttributes attrs = new AudioAttributes.Builder()
@@ -102,7 +111,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Carte choisie
-                final CardGame clickedCard = (CardGame) view;
+                final CardGame firstClickedCard = (CardGame) view;
                 strokes++;
                 // si le joueur doit attendre car 2 cartes différentes sont déjà retournées
                 if (!isLocked) {
@@ -113,25 +122,27 @@ public class GameActivity extends AppCompatActivity {
                         if (firstCard == -1) {
                             // Pas de comparaison
                             game.setFirstCard(position);
-                            clickedCard.returnCard();
+                            firstClickedCard.returnCard();
                         } else {
                             // Comparaison
-                            clickedCard.returnCard();
+                            firstClickedCard.returnCard();
                             boolean match = game.check(position);
 
                             if (match) {
-                                /* LAISSER LES 2 CARTES RETOURNÉE 2S AVANT DE LES SUPPRIMER
+                                if (gamePrefRead.equals("Activé")) {
+                                //LAISSER LES 2 CARTES RETOURNÉE 2S AVANT DE LES SUPPRIMER
                                 isLocked = true;
                                 final Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        clickedCard.removeCard();
-                                        CardGame secondCard = (CardGame) (gridview.getChildAt(firstCard));
-                                        secondCard.removeCard();
+                                        firstClickedCard.removeCard();
+                                        CardGame secondClickedCard = (CardGame) (gridview.getChildAt(firstCard));
+                                        secondClickedCard.removeCard();
                                         isLocked = false;
                                     }
-                                },2000);*/
+                                },1000);
+                                }
                                 // Si identique on regarde si fin du jeu
                                 if (game.finishedGame()) {
                                     if (loaded)
@@ -146,9 +157,9 @@ public class GameActivity extends AppCompatActivity {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        clickedCard.hideCard();
-                                        CardGame secondCard = (CardGame) (gridview.getChildAt(firstCard));
-                                        secondCard.hideCard();
+                                        firstClickedCard.hideCard();
+                                        CardGame secondClickedCard = (CardGame) (gridview.getChildAt(firstCard));
+                                        secondClickedCard.hideCard();
                                         isLocked = false;
                                     }
                                 },2000);
@@ -224,6 +235,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         sp.release();
+        System.gc();
     }
 
     @Override

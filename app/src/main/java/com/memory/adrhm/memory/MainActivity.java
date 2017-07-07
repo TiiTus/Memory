@@ -1,8 +1,9 @@
 package com.memory.adrhm.memory;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,7 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private Button easyButton;
     private Button mediumButton;
     private Button hardButton;
-    ToggleButton toggleButton;
+    // ToggleButton pour la popup paramètres
+    private ToggleButton toggleButton;
+    private String gamePrefRead;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
         easyButton = (Button)findViewById(R.id.easyButton);
         mediumButton = (Button)findViewById(R.id.mediumButton);
         hardButton = (Button)findViewById(R.id.hardButton);
-        ConstraintLayout cl = (ConstraintLayout) findViewById(R.id.constraintLayoutMain);
-
 
         easyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
+        sharedPref = getSharedPreferences("myPref", 0);
+        gamePrefRead = sharedPref.getString("supp_or_not_card_param", "Désactivé");
+        Log.e("ENMEMOIRE", gamePrefRead);
     }
 
     // Inflate le menu
@@ -87,50 +93,60 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_settings:
-
-                // Construction d'une popup qui va permettre à l'utilisateur de choisir
-                // la suppression ou non des cartes quand celles-ci sont trouvées
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                View v = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_parameter_dialog, null);
-                builder.setView(v);
-                builder.setTitle(R.string.title_dialog_parameter);
-                toggleButton = (ToggleButton) v.findViewById(R.id.togglebutton);
-
-                toggleButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (toggleButton.isChecked()) {
-                            Toast.makeText(MainActivity.this, "La suppression des cartes est activée", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(MainActivity.this, "La suppression des cartes est désactivée", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                // bouton enregistrer le choix
-                builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (toggleButton.isChecked()) {
-                            Log.e("CHECK", String.valueOf(toggleButton.getText()));
-                            // SharedPreferences
-                        }
-                        else
-                            Log.e("UNCHECKED", String.valueOf(toggleButton.getText()));
-                    }
-                });
-                //bouton annuler
-                builder.setNegativeButton(R.string.button_cancel, null);
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
-                // Récupération des 2 boutons pour changer la taille du texte
-                Button ok = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
-                ok.setTextSize(18);
-                Button cancel = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-                cancel.setTextSize(18);
+                showPopUpSettings();
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    // Méthode qui construit une popup qui va permettre à l'utilisateur de choisir
+    // la suppression ou non des cartes quand celles-ci sont trouvées
+    private void showPopUpSettings() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        View v = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_parameter_dialog, null);
+        builder.setView(v);
+        builder.setTitle(R.string.title_dialog_parameter);
+
+        toggleButton = (ToggleButton) v.findViewById(R.id.togglebutton);
+
+        if (gamePrefRead.equals("Activé")) {
+            toggleButton.setChecked(true);
+        }
+
+        toggleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (toggleButton.isChecked()) {
+                    Toast.makeText(MainActivity.this, "La suppression des cartes est activée", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "La suppression des cartes est désactivée", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        // bouton enregistrer le choix
+        builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String gamePrefSaved = String.valueOf(toggleButton.getText());
+                // Enregistrement du choix de l'utilisateur de supprimer les cartes ou pas dans les SharedPreferences
+                sharedPref = getApplicationContext().getSharedPreferences("myPref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("supp_or_not_card_param", gamePrefSaved);
+                editor.apply();
+            }
+        });
+        //bouton annuler
+        builder.setNegativeButton(R.string.button_cancel, null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Récupération des 2 boutons pour changer la taille du texte
+        Button ok = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        ok.setTextSize(18);
+        Button cancel = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        cancel.setTextSize(18);
     }
 }

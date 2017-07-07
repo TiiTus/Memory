@@ -262,11 +262,4 @@ public class Game {
     public boolean[] getReturned(){
         return returned;
     }
-
-
-    public ArrayList<Integer> getPictures(){
-        ArrayList<Integer> result = new ArrayList<>();
-        Collections.addAll(result, pictures);
-        return result;
-    }
 }
