@@ -53,29 +53,18 @@ public class CardGame extends RelativeLayout {
         }
     }
 
-    // Fonction qui met toutes les images à la même dimension
-    public void setScaleType(ImageView.ScaleType scaleType) {
-        if (image != null) {
-            image.setScaleType(scaleType);
-        }
-    }
-
     // Fonction qui retourne l'image face image
     public void returnCard() {
         back.setVisibility(GONE);
     }
 
-    //Fonction qui retourne l'image face cachée
+    // Fonction qui retourne l'image face cachée
     public void hideCard() {
         back.setVisibility(VISIBLE);
     }
 
+    // Fonction qui cache une carte (utilisé quand 2 cartes identiques sont trouvées)
     public void removeCard() {
         image.setVisibility(GONE);
-    }
-
-    // Fonction qui renvoie l'image
-    public ImageView getImage() {
-        return image;
     }
 }

@@ -63,7 +63,7 @@ public class SelectGameActivity extends AppCompatActivity {
         easyList.add(new CardList("Personnages", R.drawable.santa_claus));
         easyList.add(new CardList("Animaux", R.drawable.boar));
         easyList.add(new CardList("Drapeaux", R.drawable.france));
-        //easyList.add(new CardList("Visages", R.drawable.fille_4));
+        easyList.add(new CardList("Visages", R.drawable.fille_4));
         easyList.add(new CardList("Emoticones", R.drawable.smiling));
     }
     public void initializeMediumList() {
@@ -77,8 +77,8 @@ public class SelectGameActivity extends AppCompatActivity {
         hardList.add(new CardList("Personnages",R.drawable.heisenberg));
         hardList.add(new CardList("Animaux",R.drawable.cat));
         hardList.add(new CardList("Drapeaux",R.drawable.brazil));
-        //hardList.add(new CardList("Visages", R.drawable.fille_4));
-        //hardList.add(new CardList("Visages noir&blanc", R.drawable.fille_4_bw));
+        hardList.add(new CardList("Visages", R.drawable.fille_4));
+        hardList.add(new CardList("Visages noir&blanc", R.drawable.fille_4_bw));
         hardList.add(new CardList("Emoticones", R.drawable.tongue_out));
     }
 

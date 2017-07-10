@@ -71,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sharedPref = getSharedPreferences("myPref", 0);
+        // Lecture des préférences enregistrées précédemment
+        sharedPref = getSharedPreferences("myPref", Context.MODE_PRIVATE);
         gamePrefRead = sharedPref.getString("supp_or_not_card_param", "Désactivé");
         Log.e("ENMEMOIRE", gamePrefRead);
     }
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         toggleButton = (ToggleButton) v.findViewById(R.id.togglebutton);
 
+        // Si la préférence est sur la position "Activé" on met le visuel du bouton sur "Activé"
         if (gamePrefRead.equals("Activé")) {
             toggleButton.setChecked(true);
         }
@@ -130,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                // "Activé" ou "Désactivé"
                 String gamePrefSaved = String.valueOf(toggleButton.getText());
                 // Enregistrement du choix de l'utilisateur de supprimer les cartes ou pas dans les SharedPreferences
                 sharedPref = getApplicationContext().getSharedPreferences("myPref", Context.MODE_PRIVATE);

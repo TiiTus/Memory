@@ -13,7 +13,7 @@ import android.widget.TextView;
  */
 
 
-class CardListViewHolder extends RecyclerView.ViewHolder{
+class CardListViewHolder extends RecyclerView.ViewHolder {
 
     // Titre de la carte
     TextView text;
@@ -41,9 +41,5 @@ class CardListViewHolder extends RecyclerView.ViewHolder{
 
     static String getValue() {
         return value;
-    }
-
-    public void setValue(String value) {
-        CardListViewHolder.value = value;
     }
 }

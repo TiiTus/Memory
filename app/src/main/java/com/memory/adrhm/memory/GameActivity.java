@@ -7,7 +7,6 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Handler;
-import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -34,18 +33,18 @@ import nl.dionsegijn.konfetti.models.Size;
 public class GameActivity extends AppCompatActivity {
 
     private Game game;
-    // Instance de la classe SoundPool qui gère et joue les ressources audio
-    private SoundPool sp;
+    private GridView gridview;
+
     // Nombres de coups joués pour affichage à la fin
     private int strokes;
     // Variable qui indique si on doit attendre avant de retourner les 2 cartes
     private boolean isLocked = false;
+    // Instance de la classe SoundPool qui gère et joue les ressources audio
+    private SoundPool sp;
     // Le son joué
     private int soundId;
     // Variable qui indique si le son est chargé
     private boolean loaded = false;
-
-    GridView gridview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,9 +127,11 @@ public class GameActivity extends AppCompatActivity {
                             firstClickedCard.returnCard();
                             boolean match = game.check(position);
 
+                            // Si identique
                             if (match) {
+                                // Si la suppression des cartes est activée
                                 if (gamePrefRead.equals("Activé")) {
-                                //LAISSER LES 2 CARTES RETOURNÉE 2S AVANT DE LES SUPPRIMER
+                                // On laisse les 2 cartes identiques 1s avant de les effacer
                                 isLocked = true;
                                 final Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
@@ -216,7 +217,6 @@ public class GameActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-        //dialog.getWindow().getAttributes();
 
         // Récupération du message dans un Textview pour changer la taille du texte
         TextView message = (TextView) dialog.findViewById(android.R.id.message);
@@ -235,7 +235,6 @@ public class GameActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         sp.release();
-        System.gc();
     }
 
     @Override
@@ -260,7 +259,6 @@ public class GameActivity extends AppCompatActivity {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
-        //dialog.getWindow().getAttributes();
 
         // Récupération du message dans un Textview pour changer la taille du texte
         TextView message = (TextView) dialog.findViewById(android.R.id.message);

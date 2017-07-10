@@ -258,8 +258,4 @@ public class Game {
     void setFirstCard(int position){
         firstCard = position;
     }
-
-    public boolean[] getReturned(){
-        return returned;
-    }
 }
