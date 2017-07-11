@@ -1,7 +1,5 @@
 package com.memory.adrhm.memory;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -119,8 +117,6 @@ public class Game {
 
     // Constructeur d'instanciation d'une nouvelle partie
     public Game(int nombreImages) {
-
-        Log.e("MEMORY-TEST", "level: " + SelectGameActivity.getTitleLevel() + "  categorie: " + CardListViewHolder.getValue());
 
         nbImages = nombreImages;
         // On double le nombre d'images pour avoir des paires

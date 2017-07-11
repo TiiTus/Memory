@@ -11,7 +11,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -58,7 +57,6 @@ public class GameActivity extends AppCompatActivity {
 
         SharedPreferences settings = getSharedPreferences("myPref", 0);
         final String gamePrefRead = settings.getString("supp_or_not_card_param", "Désactivé");
-        Log.e("SHAREDPREFERENCES", gamePrefRead);
 
         // Construction des outils pour lire les sons
         AudioAttributes attrs = new AudioAttributes.Builder()
@@ -255,6 +253,7 @@ public class GameActivity extends AppCompatActivity {
 
                     public void onClick(DialogInterface arg0, int arg1) {
                         GameActivity.super.onBackPressed();
+                        finish();
                     }
                 });
         AlertDialog dialog = builder.create();

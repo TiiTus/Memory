@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * @author : hansjulien on 29/05/2017.
  * Classe qui définit une image dans la grille de jeu
@@ -47,9 +49,11 @@ public class CardGame extends RelativeLayout {
     }
 
     // Change l'image pour celle souhaitée
-    public void setImageResource(Integer resource) {
+    // Utilisation de Picasso pour alléger les allocations mémoire
+    public void setImageResource(Integer resource, int pixels) {
         if (image != null) {
-            image.setImageResource(resource);
+            Picasso.with(getContext()).load(resource).resize(pixels, pixels).into(image);
+            //image.setImageResource(resource);
         }
     }
 

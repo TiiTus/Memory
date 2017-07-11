@@ -3,15 +3,11 @@ package com.memory.adrhm.memory;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-
 
 /**
  * @author : hansjulien on 29/05/2017.
@@ -22,6 +18,7 @@ class CardGameAdapter extends BaseAdapter {
 
     private Context context;
     private Game game;
+    int pixels;
 
     CardGameAdapter(Context c, Game Game) {
         context = c;
@@ -41,8 +38,6 @@ class CardGameAdapter extends BaseAdapter {
     }
 
 
-    /******************** LA MÉTHODE DE GUIGUI RETOUCHÉE ***************************/
-
    @Override
     public View getView(int position, View convertView, ViewGroup parent){
         CardGame card;
@@ -50,32 +45,32 @@ class CardGameAdapter extends BaseAdapter {
         if(convertView == null){
             card = new CardGame(context);
             Resources r = Resources.getSystem();
-            float pixels = 0;
+            pixels = 0;
 
             // On définit la taille des images par rapport au niveau choisi
             switch (SelectGameActivity.getTitleLevel()) {
                 case "Facile" :
-                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 175, r.getDisplayMetrics());
+                    pixels = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 175, r.getDisplayMetrics());
                     break;
                 case "Moyen" :
-                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170, r.getDisplayMetrics());
+                    pixels = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170, r.getDisplayMetrics());
                     break;
                 case "Difficile" :
-                    pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 140, r.getDisplayMetrics());
+                    pixels = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 140, r.getDisplayMetrics());
                     break;
             }
-            card.setLayoutParams(new GridView.LayoutParams((int) pixels, (int) pixels));
+            card.setLayoutParams(new GridView.LayoutParams(pixels, pixels));
 
         } else {
             card = (CardGame) convertView;
         }
 
-        card.setImageResource(game.getImageAt(position));
+        card.setImageResource(game.getImageAt(position), pixels);
         return card;
     }
 
 
-    /******************** LA MÉTHODE DE GUIGUI ORIGINALE ***************************/
+    /* LA MÉTHODE ORIGINALE ***************************/
 
     /*@Override
     public View getView(int position, View convertView, ViewGroup parent){
@@ -110,7 +105,7 @@ class CardGameAdapter extends BaseAdapter {
         return card;
     }*/
 
-    /******************** FONCTIONNEL MAIS PAS OPTI ***************************/
+    /* FONCTIONNEL MAIS PAS OPTI ***************************/
 
     /*@Override
     public View getView(int position, View convertView, ViewGroup parent) {

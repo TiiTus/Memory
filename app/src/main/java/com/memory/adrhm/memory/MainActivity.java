@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Button hardButton;
     // ToggleButton pour la popup paramètres
     private ToggleButton toggleButton;
+    // Contient la préférence de l'utilisateur ((des)activé) pour cacher les cartes identiques trouvées
     private String gamePrefRead;
     private SharedPreferences sharedPref;
 
