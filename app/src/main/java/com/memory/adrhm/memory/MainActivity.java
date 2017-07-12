@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         // Lecture des préférences enregistrées précédemment
         sharedPref = getSharedPreferences("myPref", Context.MODE_PRIVATE);
         gamePrefRead = sharedPref.getString("supp_or_not_card_param", "Désactivé");
-        Log.e("ENMEMOIRE", gamePrefRead);
     }
 
     // Inflate le menu

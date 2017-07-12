@@ -26,9 +26,8 @@ public class SelectGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_game);
-        Intent i = getIntent();
-        setTitle(getIntent().getStringExtra("level"));
         titleLevel = getIntent().getStringExtra("level");
+        setTitle(titleLevel);
 
         RecyclerView recyclerView;
         switch (titleLevel) {
@@ -65,12 +64,15 @@ public class SelectGameActivity extends AppCompatActivity {
         easyList.add(new CardList("Drapeaux", R.drawable.france));
         easyList.add(new CardList("Emoticones", R.drawable.smiling));
         easyList.add(new CardList("Visages", R.drawable.fille_4));
+        easyList.add(new CardList("Visages noir&blanc", R.drawable.fille_4_bw));
     }
     public void initializeMediumList() {
         mediumList.add(new CardList("Personnages", R.drawable.woman_10));
         mediumList.add(new CardList("Animaux", R.drawable.pig));
         mediumList.add(new CardList("Drapeaux", R.drawable.spain));
         mediumList.add(new CardList("Emoticones", R.drawable.happy_2));
+        mediumList.add(new CardList("Visages", R.drawable.fille_4));
+        mediumList.add(new CardList("Visages noir&blanc", R.drawable.fille_4_bw));
     }
 
     public void initializeHardList() {

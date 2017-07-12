@@ -35,7 +35,7 @@ public class Game {
      */
 
     //Les adresses resources des images disponibles
-    private Integer[] avatarsImages = {
+    private Integer[] avatars = {
             R.drawable.avatar_1, R.drawable.avatar_2,
             R.drawable.boy_1, R.drawable.boy_2,
             R.drawable.boy_3, R.drawable.boy_4,
@@ -66,7 +66,7 @@ public class Game {
             R.drawable.zebra
     };
 
-    private Integer[] emoji = {
+    private Integer[] emojis = {
             R.drawable.angry, R.drawable.bored,
             R.drawable.confused, R.drawable.crying,
             R.drawable.happy_1, R.drawable.happy_2,
@@ -103,7 +103,7 @@ public class Game {
             R.drawable.homme_7_bw
     };
 
-    private Integer[] flagsImages = {
+    private Integer[] flags = {
             R.drawable.austria, R.drawable.brazil,
             R.drawable.estonia, R.drawable.france,
             R.drawable.italy, R.drawable.wales,
@@ -140,17 +140,17 @@ public class Game {
                 break;
 
             case "Personnages":
-                shuffle = Arrays.asList(avatarsImages);
+                shuffle = Arrays.asList(avatars);
                 Collections.shuffle(shuffle);
                 break;
 
             case "Emoticones":
-                shuffle = Arrays.asList(emoji);
+                shuffle = Arrays.asList(emojis);
                 Collections.shuffle(shuffle);
                 break;
 
             case "Drapeaux":
-                shuffle = Arrays.asList(flagsImages);
+                shuffle = Arrays.asList(flags);
                 Collections.shuffle(shuffle);
                 break;
 

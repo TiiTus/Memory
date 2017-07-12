@@ -211,6 +211,7 @@ public class GameActivity extends AppCompatActivity {
         int nbStrokes = strokes/2;
         String strStrokes = getResources().getString(R.string.title_dialog, nbStrokes);
         builder.setTitle(strStrokes)
+                .setCancelable(false)
                 .setMessage(R.string.mess_dialog);
 
         AlertDialog dialog = builder.create();
