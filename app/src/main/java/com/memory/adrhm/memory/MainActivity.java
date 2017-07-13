@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +23,7 @@ import android.widget.ToggleButton;
  */
 public class MainActivity extends AppCompatActivity {
 
+    // 3 boutons pour les 3 différents niveaux
     private Button easyButton;
     private Button mediumButton;
     private Button hardButton;
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ToggleButton toggleButton;
     // Contient la préférence de l'utilisateur ((des)activé) pour cacher les cartes identiques trouvées
     private String gamePrefRead;
+    // Instance de SharedPreferences pour enregistrer et/ou récupérer les préférences de l'utilisateur
     private SharedPreferences sharedPref;
 
     @Override

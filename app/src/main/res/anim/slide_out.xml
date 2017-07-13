@@ -3,5 +3,4 @@
     android:duration="@android:integer/config_longAnimTime"
     android:fromXDelta="0%"
     android:toXDelta="250%">
-
 </translate>

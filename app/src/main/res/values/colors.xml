@@ -45,12 +45,12 @@
     <color name="colorPrimaryDark">#29434e</color>
     <color name="colorAccent">#e66300</color>
 -->
-    theme gris/violet
+    <!-- theme gris/violet -->
     <color name="colorPrimary">#546e7a</color>
     <color name="colorPrimaryDark">#29434e</color>
     <color name="colorAccent">#bf4080</color>
 
-
+    <!-- couleur app -->
     <color name="blue">#00abea</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>

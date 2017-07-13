@@ -12,7 +12,6 @@ import android.widget.TextView;
  * Classe qui garde les références vers les vues de chaque carte
  */
 
-
 class CardListViewHolder extends RecyclerView.ViewHolder {
 
     // Titre de la carte
