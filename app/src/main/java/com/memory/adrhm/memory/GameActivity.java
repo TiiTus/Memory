@@ -115,6 +115,7 @@ public class GameActivity extends AppCompatActivity {
                     if (game.isAlreadyReturned(position)) {
                         // On ne fait rien ou un Toast
                     } else {
+                        // position de la première carte
                         final int firstCard = game.getFirstCard();
                         if (firstCard == -1) {
                             // Pas de comparaison
